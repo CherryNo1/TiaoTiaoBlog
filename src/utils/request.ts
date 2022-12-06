@@ -9,7 +9,9 @@ service.interceptors.request.use(
     config => {
         // 如果能获取到Token，那么就进入if ，如果获取不到就为null,跳转到登陆页
         if (localStorage.getItem('Token')) {
-            config.headers['Token'] = localStorage.getItem('Token')
+            console.log(localStorage.getItem('Token'));
+            (config.headers || [])['Token'] = localStorage.getItem('Token')
+            config.headers?.head?.set('Token', localStorage.getItem('Token'))
         }
         return config
     },
@@ -25,9 +27,7 @@ service.interceptors.response.use(
     (res) => {
         let data = res.data;
         // 处理自己的业务逻辑，比如判断 token 是否过期等等
-        if (data == 200) {
-            location.href = ('/login')
-        }
+
         // 代码块
         return data;
     },

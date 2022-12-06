@@ -9,18 +9,13 @@ import { service } from '../../../utils/request';
 const Login: React.FC = () => {
     const navigate = useNavigate()
     const onFinish = (values: any) => {
-        // axios.post('/api/user/login', values)
-        //     .then((res) => {
-        //         if (res.status == 200) {
-        //             navigate('/home', { state: 'alien' })
-        //         }
-        //     })
-
         service({
-            url: '/api/user/login',
+            url: '/api/auth/login',
             data: values,
             method: 'POST'
         }).then((res) => {
+            console.log(res);
+            localStorage.setItem("Token", res)
             if (res.status == 200) {
                 navigate('/home', { state: 'alien' })
             }
@@ -54,7 +49,7 @@ const Login: React.FC = () => {
 
                             <Form.Item
                                 label="账号"
-                                name="username"
+                                name="phoneNumber"
                                 rules={[{ required: true, message: 'Please input your username!' }]}
                             >
                                 <Input />
@@ -74,7 +69,7 @@ const Login: React.FC = () => {
                             >
                                 <div className="check_code">
                                     <Input className='input' />
-                                    <Image
+                                    <Image style={{ "borderRadius": "5px" }}
                                         preview={false}
                                         src="/src/assets/images/1.png"
                                     />
