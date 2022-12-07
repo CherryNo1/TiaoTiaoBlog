@@ -4,7 +4,7 @@ import './index.scss'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
-import { service } from '../../../utils/request';
+import { service } from '../../utils/request';
 
 const Login: React.FC = () => {
     const navigate = useNavigate()
@@ -14,11 +14,9 @@ const Login: React.FC = () => {
             data: values,
             method: 'POST'
         }).then((res) => {
-            console.log(res);
+            // console.log(res);
             localStorage.setItem("Token", res)
-            if (res.status == 200) {
-                navigate('/home', { state: 'alien' })
-            }
+            navigate('/home', { state: 'alien' })
         })
     };
 

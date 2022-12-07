@@ -1,10 +1,10 @@
 import React from "react";
-import { Button, ConfigProvider, theme } from "antd";
+import { Breadcrumb, Button, ConfigProvider, theme } from "antd";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home/index";
 import { NotFount } from "./pages/404";
 import User from "./pages/Home/User";
-import Login from "./pages/Home/Login";
+import Login from "./pages/Login";
 const App: React.FC = () => (
   <ConfigProvider
     theme={{
@@ -31,7 +31,7 @@ const App: React.FC = () => (
     <Routes>
       <Route path="/" element={<Navigate to={`/login`}></Navigate>}></Route>
       <Route path="/home" element={<Home />}>
-        <Route path="user" element={<User />}></Route>
+        <Route path="user" index element={<User />} ></Route>
         <Route path="login" element={<Login />}></Route>
       </Route>
       <Route path="/login" element={<Login />}></Route>
