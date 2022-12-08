@@ -1,21 +1,28 @@
-.login_form{
-    width: 618px;
-    background-color: rgba(184, 186, 224, 0.637);
-    border-radius: 20px;
-    h1{
-        text-align: center;
-        margin-top: 20px;
-    }
-    .box{
-    margin-top: 400px;
-    }
-    .check_code{
-        display: flex;
-        .input{
-            flex: 1;
-            margin-right: 5px;
+.login_box{
+    // height: calc(100vh);
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-image: url(https://api.dujin.org/bing/1920.php);
+    .login_form{
+        width: 618px;
+        background-color: rgba(184, 186, 224, 0.637);
+        border-radius: 20px;
+        h1{
+            text-align: center;
+            margin-top: 20px;
+        }
+        .box{
+        margin-top: 400px;
+        }
+        .check_code{
+            display: flex;
+            .input{
+                flex: 1;
+                margin-right: 5px;
+            }
+            
         }
         
     }
-    
 }

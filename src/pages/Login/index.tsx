@@ -26,7 +26,7 @@ const Login: React.FC = () => {
     };
 
     return (
-        <React.Fragment>
+        <div className='login_box'>
             <Row >
                 <Col span={6} offset={16}>
                     <div className="login_form">
@@ -87,7 +87,7 @@ const Login: React.FC = () => {
 
                 </Col>
             </Row>
-        </React.Fragment>
+        </div>
 
     );
 };
