@@ -59,65 +59,82 @@ const menuData = ["Springboot", "SpringCloud", "GateWay"].map(
   })
 );
 
-const App: React.FC = () => {
+const Home: React.FC = () => {
   const location = useLocation();
   const params = useParams();
   const navigate = useNavigate();
+  const navigateFun = () => {
+    console.log(artcleBox);
+  };
+  useEffect(() => {
+    console.log("组件挂载完成componentDidMount");
 
-  // useEffect(() => {
-  //   navigate('user')
-  // }, [])
+    navigateFun();
+
+    return () => {
+      console.log("组件销毁:componentWillUnmount");
+    };
+  }, []);
   const {
     token: { colorBgContainer },
   } = theme.useToken();
   const [collapsed, setCollapsed] = useState(false);
+  const artcleBox = document.getElementsByName("artcleBox");
 
   return (
-    <Layout className="layout">
-      <Header style={{ position: "sticky", top: 0, zIndex: 1, width: "100%" }}>
-        <div
+    <div className="artcleBox">
+      <Layout className="layout">
+        <Header
           style={{
-            float: "left",
-            width: 120,
-            height: 31,
-            margin: "16px 24px 16px 0",
+            position: "sticky",
+            top: 0,
+            zIndex: 1,
+            width: "100%",
+            marginBottom: "20px",
           }}
         >
-          <Logo />
-        </div>
-        <Menu
-          theme="dark"
-          mode="horizontal"
-          defaultSelectedKeys={["2"]}
-          items={menuData}
-        />
-      </Header>
-      <Content
-        className="site-layout"
-        style={{ padding: "0 20vw", display: "flex" }}
-      >
-        <hr />
-        <Layout>
-          <Sider
-            style={{ background: colorBgContainer }}
-            collapsed={collapsed}
-            onCollapse={(value) => setCollapsed(value)}
+          <div
+            style={{
+              float: "left",
+              width: 120,
+              height: 31,
+              margin: "16px 24px 16px 0",
+            }}
           >
-            <AnchorComp />
-          </Sider>
-          <Layout className="site-layout">
-            <Header style={{ padding: 0, background: colorBgContainer }} />
-            <Content style={{ margin: "0 16px", height: "100vh" }}>
+            <Logo />
+          </div>
+
+          <Menu
+            theme="dark"
+            mode="horizontal"
+            defaultSelectedKeys={["2"]}
+            items={menuData}
+          />
+        </Header>
+
+        <Content style={{ padding: "0 20vw", display: "flex" }}>
+          <Layout>
+            <Sider
+              style={{ background: colorBgContainer }}
+              collapsed={collapsed}
+              onCollapse={(value) => setCollapsed(value)}
+            >
+              <AnchorComp />
+            </Sider>
+
+            <Content style={{ margin: "0 16px" }}>
+              <hr />
               <Outlet />
             </Content>
           </Layout>
-        </Layout>
-      </Content>
-      <Footer style={{ textAlign: "center" }}>
-        Ant Design ©2018 Created by Ant UED
-      </Footer>
-    </Layout>
+        </Content>
+        <Footer className="footer" style={{ textAlign: "center" }}>
+          <hr />
+          Ant Design ©2018 Created by Ant UED
+        </Footer>
+      </Layout>
+    </div>
   );
 };
 
-export default App;
+export default Home;

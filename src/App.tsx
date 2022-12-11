@@ -5,7 +5,7 @@ import Home from "./pages/Home/index";
 import { NotFount } from "./pages/404";
 import User from "./pages/Home/User";
 import Login from "./pages/Login";
-import Artcle from './pages/Home/Artcle/index';
+import Artcle from "./pages/Home/Artcle/index";
 const App: React.FC = () => (
   <ConfigProvider
     theme={{
@@ -13,17 +13,15 @@ const App: React.FC = () => (
         colorPrimary: "#1677FF",
       },
       components: {
-
         Radio: {
-          colorPrimary: '#00b96b',
+          colorPrimary: "#00b96b",
         },
         Checkbox: {
-          colorPrimary: '#9E339F'
+          colorPrimary: "#9E339F",
         },
         Button: {
           // borderRadius: 20
         },
-
       },
       // algorithm: theme.darkAlgorithm,
       // algorithm: theme.defaultAlgorithm,
@@ -32,7 +30,7 @@ const App: React.FC = () => (
     <Routes>
       <Route path="/" element={<Navigate to={`/login`}></Navigate>}></Route>
       <Route path="/home" element={<Home />}>
-        <Route path="user" element={<User />} ></Route>
+        <Route path="user" element={<User />}></Route>
         <Route path="artcle" element={<Artcle />}></Route>
       </Route>
       <Route path="/login" element={<Login />}></Route>
