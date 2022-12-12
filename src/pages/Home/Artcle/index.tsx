@@ -1,28 +1,37 @@
-import React, { useEffect, useState } from "react";
-import { Avatar, Divider, List, Skeleton } from "antd";
+import React, { useState, useEffect } from "react";
+import { LikeOutlined, MessageOutlined, StarOutlined } from "@ant-design/icons";
+import { Avatar, Button, Divider, List, Skeleton, Space } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
-
 interface DataType {
-  gender: string;
+  gender?: string;
   name: {
-    title: string;
-    first: string;
-    last: string;
+    title?: string;
+    first?: string;
+    last?: string;
   };
-  email: string;
+  email?: string;
   picture: {
-    large: string;
-    medium: string;
-    thumbnail: string;
+    large?: string;
+    medium?: string;
+    thumbnail?: string;
   };
-  nat: string;
+  nat?: string;
+  loading: boolean;
 }
 
+const IconText = ({ icon, text }: { icon: React.FC; text: string }) => (
+  <Space>
+    {React.createElement(icon)}
+    {text}
+  </Space>
+);
+
 const Artcle: React.FC = () => {
+  const [initLoading, setInitLoading] = useState(true);
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<DataType[]>([]);
-
-  const loadMoreData = () => {
+  const [list, setList] = useState<DataType[]>([]);
+  const pullMoreData = () => {
     if (loading) {
       return;
     }
@@ -41,37 +50,74 @@ const Artcle: React.FC = () => {
   };
 
   useEffect(() => {
-    loadMoreData();
+    pullMoreData();
   }, []);
 
   return (
     <div
       id="scrollableDiv"
       style={{
-        height: "100vh",
+        height: "calc(90vh - 64px - 64px)",
         overflow: "auto",
-        padding: "0 20px",
+        padding: "0 16px",
       }}
     >
       <InfiniteScroll
         dataLength={data.length}
-        next={loadMoreData}
+        next={pullMoreData}
         hasMore={data.length < 50}
         loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}
-        endMessage={<Divider plain>It is all, nothing more 🤐</Divider>}
+        endMessage={<Divider plain>老妹儿,哥真的一滴都没了 🤐</Divider>}
         scrollableTarget="scrollableDiv"
       >
         <List
+          itemLayout="vertical"
+          size="large"
           dataSource={data}
-          bordered={false}
-          renderItem={(item) => (
-            <List.Item key={item.email}>
+          renderItem={(item, index) => (
+            <List.Item
+              key={`${index}`}
+              actions={[
+                <IconText
+                  icon={StarOutlined}
+                  text="156"
+                  key="list-vertical-star-o"
+                />,
+                <IconText
+                  icon={LikeOutlined}
+                  text="156"
+                  key="list-vertical-like-o"
+                />,
+                <IconText
+                  icon={MessageOutlined}
+                  text="2"
+                  key="list-vertical-message"
+                />,
+              ]}
+              extra={
+                <img
+                  width={272}
+                  alt="logo"
+                  src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+                />
+              }
+            >
               <List.Item.Meta
-                avatar={<Avatar src={item.picture.large} />}
-                title={<a href="https://ant.design">{item.name.last}</a>}
+                avatar={
+                  <Avatar src={`/api/test`}>
+                    <img
+                      width={32}
+                      src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+                    />
+                  </Avatar>
+                }
+                title={<a href="/api/title">{`文章《${item.email}》`}</a>}
                 description={item.email}
               />
-              <div>Content</div>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem,
+              earum quo mollitia consequuntur dignissimos similique nemo
+              distinctio, blanditiis vero saepe iusto ipsa! Sed, maiores
+              ratione! Est ab doloribus error inventore.
             </List.Item>
           )}
         />
