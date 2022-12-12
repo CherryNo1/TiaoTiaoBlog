@@ -48,7 +48,7 @@ const Login: React.FC = () => {
                             <Form.Item
                                 label="账号"
                                 name="phoneNumber"
-                                rules={[{ required: true, message: 'Please input your username!' }]}
+                                rules={[{ required: true, message: '请输入账号！' }]}
                             >
                                 <Input />
                             </Form.Item>
@@ -56,14 +56,14 @@ const Login: React.FC = () => {
                             <Form.Item
                                 label="密码"
                                 name="password"
-                                rules={[{ required: true, message: 'Please input your password!' }]}
+                                rules={[{ required: true, message: '请输入密码！' }]}
                             >
                                 <Input.Password />
                             </Form.Item>
                             <Form.Item
                                 label="验证码"
                                 name="check_code"
-                                rules={[{ required: true, message: 'Please input your username!' }]}
+                                rules={[{ required: true, message: '请输入验证码！' }]}
                             >
                                 <div className="check_code">
                                     <Input className='input' />
@@ -74,11 +74,14 @@ const Login: React.FC = () => {
                                 </div>
                             </Form.Item>
                             <Form.Item name="remember" valuePropName="checked" wrapperCol={{ offset: 5 }}>
-                                <Checkbox>记住我</Checkbox>
+                                <div> <Checkbox>记住我</Checkbox></div>
+                            </Form.Item>
+                            <Form.Item name="tip" valuePropName="checked" wrapperCol={{ offset: 5 }} rules={[{ required: true, message: '请理解并勾选此选项！' }]}>
+                                <div> <Checkbox>请注意，没有注册过的账号将会被自动注册</Checkbox></div>
                             </Form.Item>
 
                             <Form.Item wrapperCol={{ offset: 6 }}>
-                                <Button type="primary" htmlType="submit" style={{ marginBottom: 50, width: '70%' }}>
+                                <Button type="primary" htmlType="submit" size='large' style={{ marginBottom: 50, width: '70%' }}>
                                     登录
                                 </Button>
                             </Form.Item>

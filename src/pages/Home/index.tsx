@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Anchor, Breadcrumb, Divider, Image, Layout, Menu, theme } from "antd";
+import { Anchor, Breadcrumb, Button, Col, Divider, Image, Layout, Menu, Row, theme } from "antd";
 import Logo from "../../Icons/Logo";
 import {
   Navigate,
@@ -10,47 +10,57 @@ import {
   useNavigate,
   useMatch,
 } from "react-router-dom";
-const menuData = ["Springboot", "SpringCloud", "GateWay"].map(
-  (element, index) => ({
-    key: index,
-    label: `${element}`,
-  })
-);
-
 import {
   LaptopOutlined,
   NotificationOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import type { MenuProps } from "antd";
-
 const { Header, Content, Footer, Sider } = Layout;
+import { Input, Space } from 'antd';
+import { render } from 'react-dom';
 
+const { Search } = Input;
+
+const onSearch = (value: string) => console.log(value);
 const Home: React.FC = () => {
+  var navigator = useNavigate()
+  const toLogin = () => {
+    navigator('/login')
+  }
+
   const {
     token: { colorBgContainer },
   } = theme.useToken();
 
   return (
     <Layout>
-      <Header>
-        <div
-          style={{
-            float: "left",
-            width: 120,
-            height: 31,
-            margin: "16px 24px 16px 0",
-          }}
-        >
-          <Logo />
-        </div>
+      <Header style={{ 'backgroundColor': 'rgb(245 245 245)' }}>
+        <Row>
+          <Col span={3}>
+            <Logo />
+          </Col>
+          <Col span={12}>
+            <Menu
+              mode="horizontal"
+              defaultSelectedKeys={['2']}
+              items={["Springboot", "SpringCloud", "GateWay", "SpringCloud", "GateWay"].map((element, index) => {
+                const key = index + 1;
+                return {
+                  key,
+                  label: `${element}`,
+                };
+              })}
+            />
+          </Col>
+          <Col offset={1} span={3}>
+            <Search style={{ margin: '15px', textAlign: 'center' }} size="large" placeholder="Search Anything" onSearch={() => { onSearch('2') }} enterButton />
+          </Col>
+          <Col offset={3} span={2}>
+            <Button size="large" onClick={toLogin}>登录/注册</Button>
+          </Col>
+        </Row>
 
-        <Menu
-          theme="dark"
-          mode="horizontal"
-          defaultSelectedKeys={["2"]}
-          items={menuData}
-        />
+
       </Header>
       <Content
         style={{ padding: "0 15vw", minHeight: "calc(100vh - 64px - 64px)" }}
@@ -70,7 +80,7 @@ const Home: React.FC = () => {
           >
             {/* <AnchorComp /> */}
             <NotificationOutlined />
-            :))) <b>公众号:JavaJL</b>
+            :<b>公众号:Java精灵</b>
             <Divider />
             <Image width={"9vw"} src="/src/assets/images/javaLj.png" />
           </Sider>

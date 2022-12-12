@@ -1,11 +1,13 @@
 import React from "react";
-import { Breadcrumb, Button, ConfigProvider, theme } from "antd";
+import { Breadcrumb, Button, ConfigProvider, FloatButton, theme } from "antd";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home/index";
 import { NotFount } from "./pages/404";
 import User from "./pages/Home/User";
 import Login from "./pages/Login";
 import Artcle from "./pages/Home/Artcle/index";
+import { CustomerServiceOutlined, CommentOutlined } from '@ant-design/icons';
+
 const App: React.FC = () => (
   <ConfigProvider
     theme={{
@@ -27,6 +29,11 @@ const App: React.FC = () => (
       // algorithm: theme.defaultAlgorithm,
     }}
   >
+
+    <FloatButton.Group icon={<CustomerServiceOutlined />} type="primary" trigger="click">
+      <FloatButton />
+      <FloatButton icon={<CommentOutlined />} />
+    </FloatButton.Group>
     <Routes>
       <Route path="/" element={<Navigate to={`/login`}></Navigate>}></Route>
       <Route path="/home" element={<Home />}>
