@@ -6,7 +6,8 @@ import { NotFount } from "./pages/404";
 import User from "./pages/Home/User";
 import Login from "./pages/Login";
 import Artcle from "./pages/Home/Artcle/index";
-import { CustomerServiceOutlined, CommentOutlined } from '@ant-design/icons';
+import { CustomerServiceOutlined, CommentOutlined } from "@ant-design/icons";
+import Details from "./pages/Home/Artcle/Details";
 
 const App: React.FC = () => (
   <ConfigProvider
@@ -29,8 +30,11 @@ const App: React.FC = () => (
       // algorithm: theme.defaultAlgorithm,
     }}
   >
-
-    <FloatButton.Group icon={<CustomerServiceOutlined />} type="primary" trigger="click">
+    <FloatButton.Group
+      icon={<CustomerServiceOutlined />}
+      type="primary"
+      trigger="click"
+    >
       <FloatButton />
       <FloatButton icon={<CommentOutlined />} />
     </FloatButton.Group>
@@ -38,7 +42,9 @@ const App: React.FC = () => (
       <Route path="/" element={<Navigate to={`/login`}></Navigate>}></Route>
       <Route path="/home" element={<Home />}>
         <Route path="user" element={<User />}></Route>
-        <Route path="artcle" element={<Artcle />}></Route>
+        <Route path="artcle" element={<Artcle />}>
+          <Route path=":artcleId" element={<Details />} />
+        </Route>
       </Route>
       <Route path="/login" element={<Login />}></Route>
       <Route path="/*" element={<NotFount />} />
