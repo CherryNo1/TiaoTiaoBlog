@@ -1,30 +1,234 @@
 import { useParams } from "react-router-dom";
-
+import ReactMarkdown from 'react-markdown'
 import React from "react";
+const { Header, Content, Footer, Sider } = Layout;
 import { Anchor, Col, Image, Layout, Menu, Row, theme } from "antd";
 import AnchorComp from "../../../../components/AnchorComp";
-import ReactMarkdown from "react-markdown";
+// import ReactMarkdown from "react-markdown";
+import ReactMarkdownReader from '../../../../components/MarkdownComp/Reader';
+import Writer from "../../../../components/MarkdownComp/Writer";
+import MarkdownNavbar from 'markdown-navbar';
+// The default style of markdown-navbar should be imported additionally
+import 'markdown-navbar/dist/navbar.css';
+const markdown = `
+# 一号标题
+Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo voluptatem nobis dolorum, aliquam, iure, officiis cumque provident id nisi beatae eius consequuntur ad fuga facere ut? Quos expedita soluta velit reprehenderit quisquam, sapiente suscipit est ab blanditiis voluptatum magni itaque recusandae fugit ut, tempora aliquam fuga! Laboriosam voluptas, eligendi molestias incidunt quisquam aperiam soluta dolor placeat quaerat eos ex hic nemo ab, cum debitis consequuntur corporis eveniet modi. Commodi ea animi, iure tenetur, ex totam quae nesciunt, pariatur quam nemo laborum? Dolorum deleniti necessitatibus officia. Libero voluptatibus veritatis qui labore quia eveniet, facilis sed sint placeat omnis sequi laborum non!
+## 二号标题
+Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo voluptatem nobis dolorum, aliquam, iure, officiis cumque provident id nisi beatae eius consequuntur ad fuga facere ut? Quos expedita soluta velit reprehenderit quisquam, sapiente suscipit est ab blanditiis voluptatum magni itaque recusandae fugit ut, tempora aliquam fuga! Laboriosam voluptas, eligendi molestias incidunt quisquam aperiam soluta dolor placeat quaerat eos ex hic nemo ab, cum debitis consequuntur corporis eveniet modi. Commodi ea animi, iure tenetur, ex totam quae nesciunt, pariatur quam nemo laborum? Dolorum deleniti necessitatibus officia. Libero voluptatibus veritatis qui labore quia eveniet, facilis sed sint placeat omnis sequi laborum non!
+Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo voluptatem nobis dolorum, aliquam, iure, officiis cumque provident id nisi beatae eius consequuntur ad fuga facere ut? Quos expedita soluta velit reprehenderit quisquam, sapiente suscipit est ab blanditiis voluptatum magni itaque recusandae fugit ut, tempora aliquam fuga! Laboriosam voluptas, eligendi molestias incidunt quisquam aperiam soluta dolor placeat quaerat eos ex hic nemo ab, cum debitis consequuntur corporis eveniet modi. Commodi ea animi, iure tenetur, ex totam quae nesciunt, pariatur quam nemo laborum? Dolorum deleniti necessitatibus officia. Libero voluptatibus veritatis qui labore quia eveniet, facilis sed sint placeat omnis sequi laborum non!
 
-const { Header, Content, Footer, Sider } = Layout;
-let markdown =
-  "# 这是标题\n" +
-  "[ **M** ] arkdown + E [ **ditor** ] = **Mditor**  \n" +
-  "> Mditor 是一个简洁、易于集成Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem, odit dolorum dolore perferendis cum quisquam laudantium, beatae natus at ea recusandae voluptates porro? Nobis inventore laudantium maxime quaerat eaque consectetur enim, voluptatum temporibus animi omnis labore in voluptatibus reiciendis! Est suscipit, quas voluptatum illum corrupti odit maiores? Aliquam quos amet omnis minus, quasi quidem, aperiam necessitatibus impedit optio mollitia at tempore ipsam ex, fuga maxime eaque illum animi recusandae commodi adipisci numquam. Dolorum, officiis! A, quam quaerat dolore ipsa reprehenderit harum ipsum reiciendis debitis voluptates totam voluptatem voluptatibus facere ratione. Quasi eaque sint dolorum beatae odit amet commodi nam totam deleniti! Illo, dolore doloremque? Quis commodi delectus, odit blanditiis ipsa officiis magni laborum iusto totam culpa quaerat molestias! Dignissimos dolore quaerat corrupti dolor, eligendi atque nulla repudiandae accusantium impedit. Suscipit aut fuga labore ad laborum explicabo impedit sint. Voluptatibus, quod! Eveniet, magnam laborum? Consectetur eveniet laboriosam vero deleniti quos quia voluptatem atque consequatur voluptates blanditiis! Non, illum nihil possimus unde delectus id optio voluptas, quaerat amet numquam, beatae ab iste asperiores harum consequuntur. Veritatis et, mollitia perspiciatis molestiae nemo inventore velit ab quia libero deserunt vero eius neque, maxime exercitationem ipsam doloribus at earum laborum rerum impedit ullam necessitatibus ipsum hic fuga. Impedit debitis a eum natus, non, nostrum dolores ut consequatur sit ab ullam. Nemo sunt praesentium et molestiae! Eveniet officiis labore itaque eligendi rerum quo dicta dolores eaque sint cum, sequi officia iure ipsum deleniti temporibus nihil repellendus nulla quam ipsam aliquam laboriosam magnam magni consequuntur! Odio beatae voluptatibus earum possimus iste in, asperiores velit quis. Vitae officia ex, accusantium dolorum obcaecati harum expedita quisquam optio iste itaque ab et excepturi quaerat laborum dolore deleniti fugiat repudiandae possimus non at iusto. Magni rem beatae dolorem, labore, hic, quas eaque quod incidunt deserunt fugiat debitis neque aspernatur. Odio ducimus optio magnam, dicta fugit doloremque, corrupti itaque officia est doloribus qui? Quis nam dolor facilis sequi minima perferendis est veniam distinctio blanditiis, fugiat fuga sint, natus dolorem iste mollitia numquam odit rem eligendi necessitatibus commodi. Fugiat aspernatur cumque dignissimos autem vero officia quidem libero mollitia. Totam numquam perferendis expedita blanditiis cumque dolore? Molestias, nam! Nobis odio non aliquam molestiae est. Quasi voluptates quod officiis dignissimos iusto, aliquam corrupti quos quibusdam distinctio temporibus repellat odit saepe a fugit numquam? Dignissimos adipisci vel molestias magni velit, ratione ex amet rerum exercitationem est totam voluptas quisquam deserunt blanditiis culpa aut, incidunt, architecto tenetur ea! Dolor voluptatum similique rem doloremque id? Corrupti voluptatem culpa quidem debitis cupiditate, labore officia quisquam eveniet. Qui corporis consequatur rem assumenda ipsa mollitia quo impedit perferendis, facilis voluptas ut itaque fugiat soluta, quas corrupti vero eligendi ipsum officiis dignissimos repudiandae deserunt nostrum. Consequuntur at, totam sapiente recusandae facilis maiores deserunt voluptate explicabo delectus rem debitis praesentium est tempore! Distinctio dicta quaerat mollitia fugiat eos sint exercitationem cupiditate optio, blanditiis aperiam? Consequuntur fuga labore, consequatur quia corporis, minus eos facere aut cupiditate rerum repellat laborum voluptate qui animi porro tenetur architecto? Nostrum reiciendis, molestiae explicabo distinctio ex pariatur obcaecati aut ab alias corrupti repellat ipsum, qui enim eveniet incidunt nisi deleniti quas. Quia animi doloremque obcaecati sequi aliquam ipsum adipisci autem cum blanditiis quas a eius ad nihil, corrupti voluptatibus, vel perferendis esse odit. Voluptas sint fugit iusto ut officiis veniam eum quas ullam cum sit nihil autem modi, expedita, id tempore. Nam quidem quasi ex architecto aperiam delectus magnam perferendis temporibus aliquid, sed nesciunt animi error velit esse earum? Alias itaque, in est necessitatibus aspernatur fugit quasi minus commodi? Minus, earum aliquid pariatur aliquam recusandae non ipsa dolorum magnam enim est magni, cupiditate, repellendus vel nemo. Magni veniam adipisci sint obcaecati ad molestiae dolore repellendus enim est perspiciatis consectetur ex nemo quod rem facere reprehenderit, omnis molestias placeat in, suscipit itaque asperiores dicta dolorem accusamus. Provident dolorem hic neque possimus ipsum. Ut est officia qui, dignissimos dolore ipsum nesciunt dolorem vel harum illum minus amet repellat earum a quos deleniti? Iusto error, sapiente adipisci in repellendus esse, perspiciatis optio iure harum dolores nostrum velit aperiam. Repellendus earum accusamus facilis, cum quo blanditiis adipisci libero, iure dolorum asperiores accusantium maiores doloribus. Molestias assumenda nesciunt doloribus quasi quod dicta maxime ab in optio odit cumque, a asperiores, exercitationem nisi temporibus sunt ex ullam quibusdam. Architecto illum praesentium enim nesciunt, quia consectetur a temporibus molestiae ad corrupti. Mollitia dolorem repellat veniam quae ipsum quisquam doloribus aperiam sequi voluptas rerum perspiciatis quis nostrum quibusdam, hic natus ratione impedit, corporis recusandae asperiores voluptatum beatae alias eaque officia? Harum, quia. Doloribus vitae eius possimus saepe iure. Voluptatibus dolores rerum mollitia officia temporibus laborum facilis modi, minus labore, quod blanditiis aperiam unde, consectetur accusantium. Excepturi dolorem doloribus eos similique libero cum, repudiandae, velit debitis doloremque ipsum quia officia sit quis cumque impedit vero exercitationem omnis alias nam nobis recusandae quae ratione eius dignissimos. Non placeat perferendis ducimus animi est magnam ea iste, enim nesciunt, nostrum similique libero ipsam aspernatur nemo laborum soluta sed rem autem mollitia quos quod odio facere! Consectetur dolor corrupti aliquam rem iste esse eaque molestias! Maxime ab numquam quia, eos error voluptatem natus aliquam fugit exercitationem modi minima aut repudiandae maiores commodi voluptatibus cumque quibusdam sequi corrupti ratione recusandae? Quidem sint perferendis incidunt laborum modi officiis nisi, saepe dolorem repellat ipsa laboriosam maiores illo placeat magnam deleniti praesentium animi quaerat, nam vero hic quia consectetur architecto eos! Minus neque eveniet dolore sed corporis? Ut optio error nostrum a reprehenderit voluptatem possimus velit dolore minima id sint vero, doloribus, architecto accusamus fuga obcaecati molestiae aliquid inventore eius mollitia at quis, neque itaque. Minus, quam eum obcaecati ipsa magnam perferendis quisquam nostrum libero at ut id saepe velit molestiae vitae exercitationem quibusdam, dolorem ducimus error. Magnam, nemo maiores. Officia repudiandae aut eius ratione delectus iure quam voluptate laboriosam, quasi distinctio laudantium fugiat corrupti, dolore a labore eligendi maiores at debitis dolor omnis nulla alias. Fugit hic deleniti perspiciatis expedita vero repudiandae at corporis mollitia quas autem, id ipsam corrupti alias ad, modi ea labore animi? Eius, sapiente assumenda aspernatur inventore repudiandae perferendis quo ullam. 、方便扩展、期望舒服的编写 markdown 的编辑器，仅此而已... \n\n" +
-  "**这是加粗的文字**\n\n" +
-  "*这是倾斜的文字*`\n\n" +
-  "***这是斜Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem, odit dolorum dolore perferendis cum quisquam laudantium, beatae natus at ea recusandae voluptates porro? Nobis inventore laudantium maxime quaerat eaque consectetur enim, voluptatum temporibus animi omnis labore in voluptatibus reiciendis! Est suscipit, quas voluptatum illum corrupti odit maiores? Aliquam quos amet omnis minus, quasi quidem, aperiam necessitatibus impedit optio mollitia at tempore ipsam ex, fuga maxime eaque illum animi recusandae commodi adipisci numquam. Dolorum, officiis! A, quam quaerat dolore ipsa reprehenderit harum ipsum reiciendis debitis voluptates totam voluptatem voluptatibus facere ratione. Quasi eaque sint dolorum beatae odit amet commodi nam totam deleniti! Illo, dolore doloremque? Quis commodi delectus, odit blanditiis ipsa officiis magni laborum iusto totam culpa quaerat molestias! Dignissimos dolore quaerat corrupti dolor, eligendi atque nulla repudiandae accusantium impedit. Suscipit aut fuga labore ad laborum explicabo impedit sint. Voluptatibus, quod! Eveniet, magnam laborum? Consectetur eveniet laboriosam vero deleniti quos quia voluptatem atque consequatur voluptates blanditiis! Non, illum nihil possimus unde delectus id optio voluptas, quaerat amet numquam, beatae ab iste asperiores harum consequuntur. Veritatis et, mollitia perspiciatis molestiae nemo inventore velit ab quia libero deserunt vero eius neque, maxime exercitationem ipsam doloribus at earum laborum rerum impedit ullam necessitatibus ipsum hic fuga. Impedit debitis a eum natus, non, nostrum dolores ut consequatur sit ab ullam. Nemo sunt praesentium et molestiae! Eveniet officiis labore itaque eligendi rerum quo dicta dolores eaque sint cum, sequi officia iure ipsum deleniti temporibus nihil repellendus nulla quam ipsam aliquam laboriosam magnam magni consequuntur! Odio beatae voluptatibus earum possimus iste in, asperiores velit quis. Vitae officia ex, accusantium dolorum obcaecati harum expedita quisquam optio iste itaque ab et excepturi quaerat laborum dolore deleniti fugiat repudiandae possimus non at iusto. Magni rem beatae dolorem, labore, hic, quas eaque quod incidunt deserunt fugiat debitis neque aspernatur. Odio ducimus optio magnam, dicta fugit doloremque, corrupti itaque officia est doloribus qui? Quis nam dolor facilis sequi minima perferendis est veniam distinctio blanditiis, fugiat fuga sint, natus dolorem iste mollitia numquam odit rem eligendi necessitatibus commodi. Fugiat aspernatur cumque dignissimos autem vero officia quidem libero mollitia. Totam numquam perferendis expedita blanditiis cumque dolore? Molestias, nam! Nobis odio non aliquam molestiae est. Quasi voluptates quod officiis dignissimos iusto, aliquam corrupti quos quibusdam distinctio temporibus repellat odit saepe a fugit numquam? Dignissimos adipisci vel molestias magni velit, ratione ex amet rerum exercitationem est totam voluptas quisquam deserunt blanditiis culpa aut, incidunt, architecto tenetur ea! Dolor voluptatum similique rem doloremque id? Corrupti voluptatem culpa quidem debitis cupiditate, labore officia quisquam eveniet. Qui corporis consequatur rem assumenda ipsa mollitia quo impedit perferendis, facilis voluptas ut itaque fugiat soluta, quas corrupti vero eligendi ipsum officiis dignissimos repudiandae deserunt nostrum. Consequuntur at, totam sapiente recusandae facilis maiores deserunt voluptate explicabo delectus rem debitis praesentium est tempore! Distinctio dicta quaerat mollitia fugiat eos sint exercitationem cupiditate optio, blanditiis aperiam? Consequuntur fuga labore, consequatur quia corporis, minus eos facere aut cupiditate rerum repellat laborum voluptate qui animi porro tenetur architecto? Nostrum reiciendis, molestiae explicabo distinctio ex pariatur obcaecati aut ab alias corrupti repellat ipsum, qui enim eveniet incidunt nisi deleniti quas. Quia animi doloremque obcaecati sequi aliquam ipsum adipisci autem cum blanditiis quas a eius ad nihil, corrupti voluptatibus, vel perferendis esse odit. Voluptas sint fugit iusto ut officiis veniam eum quas ullam cum sit nihil autem modi, expedita, id tempore. Nam quidem quasi ex architecto aperiam delectus magnam perferendis temporibus aliquid, sed nesciunt animi error velit esse earum? Alias itaque, in est necessitatibus aspernatur fugit quasi minus commodi? Minus, earum aliquid pariatur aliquam recusandae non ipsa dolorum magnam enim est magni, cupiditate, repellendus vel nemo. Magni veniam adipisci sint obcaecati ad molestiae dolore repellendus enim est perspiciatis consectetur ex nemo quod rem facere reprehenderit, omnis molestias placeat in, suscipit itaque asperiores dicta dolorem accusamus. Provident dolorem hic neque possimus ipsum. Ut est officia qui, dignissimos dolore ipsum nesciunt dolorem vel harum illum minus amet repellat earum a quos deleniti? Iusto error, sapiente adipisci in repellendus esse, perspiciatis optio iure harum dolores nostrum velit aperiam. Repellendus earum accusamus facilis, cum quo blanditiis adipisci libero, iure dolorum asperiores accusantium maiores doloribus. Molestias assumenda nesciunt doloribus quasi quod dicta maxime ab in optio odit cumque, a asperiores, exercitationem nisi temporibus sunt ex ullam quibusdam. Architecto illum praesentium enim nesciunt, quia consectetur a temporibus molestiae ad corrupti. Mollitia dolorem repellat veniam quae ipsum quisquam doloribus aperiam sequi voluptas rerum perspiciatis quis nostrum quibusdam, hic natus ratione impedit, corporis recusandae asperiores voluptatum beatae alias eaque officia? Harum, quia. Doloribus vitae eius possimus saepe iure. Voluptatibus dolores rerum mollitia officia temporibus laborum facilis modi, minus labore, quod blanditiis aperiam unde, consectetur accusantium. Excepturi dolorem doloribus eos similique libero cum, repudiandae, velit debitis doloremque ipsum quia officia sit quis cumque impedit vero exercitationem omnis alias nam nobis recusandae quae ratione eius dignissimos. Non placeat perferendis ducimus animi est magnam ea iste, enim nesciunt, nostrum similique libero ipsam aspernatur nemo laborum soluta sed rem autem mollitia quos quod odio facere! Consectetur dolor corrupti aliquam rem iste esse eaque molestias! Maxime ab numquam quia, eos error voluptatem natus aliquam fugit exercitationem modi minima aut repudiandae maiores commodi voluptatibus cumque quibusdam sequi corrupti ratione recusandae? Quidem sint perferendis incidunt laborum modi officiis nisi, saepe dolorem repellat ipsa laboriosam maiores illo placeat magnam deleniti praesentium animi quaerat, nam vero hic quia consectetur architecto eos! Minus neque eveniet dolore sed corporis? Ut optio error nostrum a reprehenderit voluptatem possimus velit dolore minima id sint vero, doloribus, architecto accusamus fuga obcaecati molestiae aliquid inventore eius mollitia at quis, neque itaque. Minus, quam eum obcaecati ipsa magnam perferendis quisquam nostrum libero at ut id saepe velit molestiae vitae exercitationem quibusdam, dolorem ducimus error. Magnam, nemo maiores. Officia repudiandae aut eius ratione delectus iure quam voluptate laboriosam, quasi distinctio laudantium fugiat corrupti, dolore a labore eligendi maiores at debitis dolor omnis nulla alias. Fugit hic deleniti perspiciatis expedita vero repudiandae at corporis mollitia quas autem, id ipsam corrupti alias ad, modi ea labore animi? Eius, sapiente assumenda aspernatur inventore repudiandae perferendis quo ullam.体加粗的文字***\n\n" +
-  "`console.log(Hello World)` \n\n" +
-  "```const a=2; ```" +
-  "  ![在这里插入图片描述](https://img-blog.csdnimg.cn/2021060522035638.png)" +
-  "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate iusto modi cumque optio sequi adipisci? Illo nulla quas reiciendis repudiandae minima, id assumenda nesciunt mollitia quidem officia quo natus deleniti distinctio accusantium, quis qui dolores similique reprehenderit laudantium? Eos deleniti laboriosam libero quisquam error eum sequi neque, tenetur quaerat debitis cumque perspiciatis voluptatem officia molestias doloremque! Animi non vitae neque cum consequuntur dolorem quis, quo assumenda ad eos quasi ab aut mollitia inventore repudiandae praesentium enim. Eaque, consequuntur nam. Exercitationem maxime atque, molestiae laboriosam dolor nam eveniet autem doloribus vero vel necessitatibus laborum rerum nesciunt, aut tenetur aliquam, in quisquam harum ad. Porro mollitia est maxime reprehenderit dolorem a perferendis accusamus voluptatibus illo? Quas minima veritatis sunt vel vitae quasi nisi voluptas rerum suscipit delectus. Rem delectus consectetur sapiente corrupti error similique saepe, natus excepturi ut veritatis voluptas maiores pariatur quo sit officia eius explicabo, atque debitis doloribus voluptatem rerum id tempora soluta. Reiciendis soluta, id laboriosam at error nesciunt laudantium velit praesentium, itaque dolor, tempora hic odit fugiat pariatur quia incidunt quas in enim qui ex sapiente officia veritatis ab perferendis! Quis quo magni repellendus iusto consectetur quos pariatur. Eos hic rem explicabo veniam nesciunt nobis id, eveniet, facilis inventore, odio porro asperiores sapiente deleniti excepturi mollitia laudantium quos? Quas, culpa. Tempore id, sunt nesciunt veniam qui veritatis repellendus, labore necessitatibus deserunt ea eos, exercitationem beatae tempora totam? Voluptate, temporibus! Voluptates laboriosam blanditiis, placeat autem illum earum suscipit dicta odit, magnam, provident officia quis. Dolores temporibus, hic vel accusamus provident repellendus alias, quisquam, reiciendis odio nulla explicabo exercitationem amet? Accusamus natus earum excepturi aliquam voluptatem accusantium provident officia suscipit corrupti totam voluptatibus fuga minus, amet modi quaerat id ab sequi ea ratione vero aspernatur at explicabo quod. Modi optio numquam, velit officia quam fugiat ratione recusandae dignissimos? Amet doloremque sunt velit sit quo molestias non vitae, repellendus perferendis incidunt eum consequuntur aspernatur. Fuga ea dolorum assumenda non pariatur illum est molestiae ut aut. Voluptate obcaecati saepe, accusamus nulla ipsum recusandae maiores quidem? Illum ab magnam quas ut optio facilis, eligendi quasi? Ea eius officia iusto mollitia. Eius sed ipsum suscipit eligendi soluta quas qui doloribus facilis vitae, autem quos eos cumque, minima doloremque enim. Sint, earum aperiam totam nihil quas, exercitationem ducimus iste aut neque asperiores ex libero qui dolorum assumenda corrupti sit? Corrupti corporis veniam aut adipisci sit a. Exercitationem cumque provident eius fugiat quidem officiis facere unde, amet quas ipsam fuga laboriosam ipsa consequuntur sint inventore dolores veritatis nesciunt rerum perspiciatis similique temporibus. Quia, voluptas iusto! Earum rem, autem iste magni fuga doloribus voluptatibus fugit delectus quod reprehenderit ratione cupiditate culpa modi sit quam consequatur animi quibusdam libero possimus repellat. Cumque mollitia sunt, suscipit quis dolorem impedit rerum inventore, eveniet dolor commodi dicta numquam consequuntur itaque perspiciatis in nihil, dolorum pariatur reprehenderit exercitationem officia voluptas consequatur iusto! Enim provident dolor eligendi facilis eos officia maiores! Hic deleniti animi perspiciatis pariatur nisi ratione, neque doloribus quos est accusamus aliquam quae officiis quas, consectetur laboriosam sequi fugiat eligendi. Excepturi nobis nulla assumenda accusantium sed mollitia reprehenderit omnis, tempora tempore. Minus doloremque eius illum est ipsum saepe sit magnam esse natus quis accusamus suscipit excepturi quaerat odit tenetur, dolorem dignissimos. Ipsum eligendi excepturi optio mollitia, a quia doloremque perferendis. Aperiam distinctio in at placeat asperiores, accusantium hic, repudiandae debitis veritatis laborum sapiente odit expedita voluptate tenetur molestias ducimus. Dignissimos fuga molestias vel aliquam aspernatur velit praesentium quisquam eius labore dolorem. Laborum, recusandae? Earum possimus ipsa maiores, reiciendis tempore aliquam alias nam fugit molestiae, ab adipisci nisi commodi modi voluptatibus. Saepe voluptas odit possimus autem numquam fuga suscipit repudiandae nemo, atque alias quo beatae illo sapiente nobis, id in. Similique et explicabo quos autem quod, sit nisi, facere est mollitia vel ex, neque cumque! Eaque possimus quibusdam ipsum repudiandae numquam debitis fugit ea quisquam, harum voluptates mollitia aspernatur nisi quas architecto aliquid nesciunt modi, repellat dolore? Necessitatibus suscipit perferendis cum non ullam vitae autem, molestiae earum harum deserunt. Maxime sunt asperiores beatae expedita fugiat veniam, blanditiis iste recusandae necessitatibus accusamus dolor unde. Reiciendis delectus, ab, porro dolorum quasi illo ea dolore voluptates, libero odit ullam odio? Iure eum ab ratione odit, molestias nesciunt natus. Cupiditate beatae magnam possimus neque eveniet facere temporibus earum, odio blanditiis architecto, perspiciatis aut dolore et, quis iure consequatur cumque alias ipsam! Repudiandae quasi fugiat, suscipit facilis nam soluta commodi dolore. In debitis corporis repellendus perferendis maxime aut illo dolor natus minima voluptatum veritatis expedita rerum saepe dicta, velit numquam modi qui distinctio praesentium vero itaque libero cum corrupti. Inventore, delectus officiis dolorem modi nisi ab quos esse illo, explicabo obcaecati vero. Alias, suscipit consectetur? Excepturi voluptas nisi fugit? Animi, in atque inventore soluta id nobis quae quaerat facilis ex, ut libero quasi quibusdam perferendis molestiae officiis veniam, quos vel! Quaerat aut dolore quis, vero blanditiis animi suscipit in exercitationem laudantium nemo porro numquam alias adipisci ea, error eaque velit perspiciatis molestiae voluptas voluptate qui harum, odio deleniti accusamus? Quam magni sed quos libero nemo sequi maxime quod, consectetur qui veritatis inventore, doloribus, dignissimos velit repellendus alias sint cupiditate dicta quia. Est cupiditate doloribus repellat! Magnam doloremque vel deleniti pariatur? Sapiente ea, nesciunt, nam, excepturi eos magnam maxime quidem modi officia labore beatae assumenda perspiciatis non nostrum fugiat illo suscipit. Qui, nemo recusandae expedita totam porro officia nobis magnam corrupti, aspernatur cumque enim quas molestiae laborum? Recusandae quod doloribus molestiae est facere officia, fuga accusantium et repellat id molestias laudantium quaerat rerum atque, quas, veniam obcaecati ducimus aperiam! Corrupti doloremque ratione soluta minima ipsa, iure neque recusandae dolor eligendi laboriosam obcaecati sapiente, alias sit perferendis eveniet rerum illum dicta odit eos cupiditate. Voluptates nulla qui quae eius repudiandae maxime aperiam, neque doloremque quaerat voluptatem ratione dolores corrupti quia cupiditate ut magni tempore modi. Veritatis, rem magni provident pariatur ipsam id eos. Odit iste rerum illum labore non unde, nemo eos officia dolore ad, cupiditate quam numquam ipsam soluta exercitationem, blanditiis et aut hic sed pariatur! Similique rerum ab assumenda, obcaecati voluptatem minima temporibus optio aut nam dicta.";
+* Chicken Chicken Chicken Chicken Chicken.
+* Chicken Chicken Chicken Chicken Chicken.
+* Chicken Chicken Chicken Chicken Chicken.
+
+### 三号标题
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores ad tempore blanditiis mollitia, eaque ab quasi aliquam veniam sint magni, consectetur voluptatibus repudiandae at cumque laboriosam, minima praesentium nulla enim?
+Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo voluptatem nobis dolorum, aliquam, iure, officiis cumque provident id nisi beatae eius consequuntur ad fuga facere ut? Quos expedita soluta velit reprehenderit quisquam, sapiente suscipit est ab blanditiis voluptatum magni itaque recusandae fugit ut, tempora aliquam fuga! Laboriosam voluptas, eligendi molestias incidunt quisquam aperiam soluta dolor placeat quaerat eos ex hic nemo ab, cum debitis consequuntur corporis eveniet modi. Commodi ea animi, iure tenetur, ex totam quae nesciunt, pariatur quam nemo laborum? Dolorum deleniti necessitatibus officia. Libero voluptatibus veritatis qui labore quia eveniet, facilis sed sint placeat omnis sequi laborum non!
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores ad tempore blanditiis mollitia, eaque ab quasi aliquam veniam sint magni, consectetur voluptatibus repudiandae at cumque laboriosam, minima praesentium nulla enim?
+Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo voluptatem nobis dolorum, aliquam, iure, officiis cumque provident id nisi beatae eius consequuntur ad fuga facere ut? Quos expedita soluta velit reprehenderit quisquam, sapiente suscipit est ab blanditiis voluptatum magni itaque recusandae fugit ut, tempora aliquam fuga! Laboriosam voluptas, eligendi molestias incidunt quisquam aperiam soluta dolor placeat quaerat eos ex hic nemo ab, cum debitis consequuntur corporis eveniet modi. Commodi ea animi, iure tenetur, ex totam quae nesciunt, pariatur quam nemo laborum? Dolorum deleniti necessitatibus officia. Libero voluptatibus veritatis qui labore quia eveniet, facilis sed sint placeat omnis sequi laborum non!
+
+#### 四号标题
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni culpa exercitationem voluptas tempore porro eaque in inventore! Fugit quibusdam id sit numquam, dolores corporis eaque totam! Rem a mollitia fugiat voluptates sint quibusdam, autem officiis qui saepe ratione, assumenda alias iure. Neque explicabo non perferendis, deserunt harum modi dolore doloremque enim omnis quasi recusandae debitis culpa possimus reprehenderit iure reiciendis ipsa quaerat expedita optio delectus, asperiores rerum blanditiis? Libero minima porro suscipit quaerat, rerum velit et soluta laborum sunt quod sequi doloribus ea, alias aut nesciunt eius maxime nostrum eveniet ipsam fuga saepe pariatur illum neque? Labore animi laudantium delectus?
+
+# 一号标题
+amet consectetur adipisicing elit. Maiores ad tempore blanditiis mollitia, eaque ab quasi aliquam veniam sint magni, consectetur voluptatibus repudiandae at cumque laboriosam, minima praesentium nulla enim?
+Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo voluptatem nobis dolorum, aliquam, iure, officiis cumque provident id nisi beatae eius consequuntur ad fuga facere ut? Quos expedita soluta velit reprehenderit quisquam, sapiente suscipit est ab blanditiis voluptatum magni itaque recusandae fugit ut, tempora aliquam fuga! Laboriosam voluptas, eligendi molestias incidunt quisquam aperiam soluta dolor placeat quaerat eos ex hic nemo ab, cum debitis consequuntur corporis eveniet modi. Commodi ea animi, iure tenetur, ex totam quae nesciunt, pariatur quam nemo laborum? Dolorum deleniti necessitatibus officia. Libero voluptatibus veritatis qui labore quia eveniet, facilis sed sint placeat omnis sequi laborum non!
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores ad tempore blanditiis mollitia, eaque ab quasi aliquam veniam sint magni, consectetur voluptatibus repudiandae at cumque laboriosam, minima praesentium nulla enim?
+Lorem, ipsum dolor sit
+#### 四号标题
+dolorum, aliquam, iure, officiis cumque provident id nisi beatae eius consequuntur ad fuga facere ut? Quos expedita soluta velit reprehenderit quisquam, sapiente suscipit est ab blanditiis voluptatum magni itaque recusandae fugit ut, tempora aliquam fuga! Laboriosam voluptas, eligendi molestias incidunt quisquam aperiam soluta dolor placeat quaerat eos ex hic nemo ab, cum debitis consequuntur corporis eveniet modi. Commodi ea animi, iure tenetur, ex totam quae nesciunt, pariatur quam nemo laborum? Dolorum deleniti necessitatibus officia. Libero voluptatibus veritatis qui labore quia eveniet, facilis sed sint placeat omnis sequi laborum non!
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores ad tempore blanditiis mollitia, eaque ab quasi aliquam veniam sint magni, consectetur voluptatibus repudiandae at cumque laboriosam, minima praesentium nulla enim?
+Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo vol
+两三个数据源、事务场景比较少，基于 SpringBoot 的多数据源组件，功能强悍，支持 Seata 分布式事务。
+
+支持数据源分组，适用于多种场景纯粹多库 读写分离 一主多从 混合模式。
+支持数据库敏感配置信息加密 ENC()。
+支持每个数据库独立初始化表结构schema和数据库database。
+支持无数据源启动，支持懒加载数据源（需要的时候再创建连接）。
+支持自定义注解，需继承DS(3.2.0+)。
+提供并简化对Druid，HikariCp，BeeCp，Dbcp2的快速集成。
+提供对Mybatis­Plus，Quartz，ShardingJdbc，P6sy，Jndi等组件的集成方案。
+提供自定义数据源来源方案（如全从数据库加载）。
+提供项目启动后动态增加移除数据源方案。
+提供Mybatis环境下的纯读写分离方案。
+提供使用spel动态参数解析数据源方案。内置spel，session，header，支持自定义。
+支持多层数据源嵌套切换 。（ServiceA >>> ServiceB >>> ServiceC）。
+提供基于seata的分布式事务方案。
+提供本地多数据源事务方案。 附：不能和原生spring事务混用。
+🍀（1）约定
+
+（1）本框架只做切换数据源 这件核心的事情，并不限制你的具体操作，切换了数据源可以做任何CRUD。
+（2）配置文件所有以下划线 _ 分割的数据源 首部 即为组的名称，相同组名称的数据源会放在一个组下。
+（3）切换数据源可以是组名，也可以是具体数据源名称。组名则切换时采用负载均衡算法切换,默认是轮询的。
+（4）默认的数据源名称为 master ，你可以通过 spring.datasource.dynamic.primary 修改。
+（5）方法上的注解优先于类上注解。
+（6）DS支持继承抽象类上的DS，暂不支持继承接口上的DS。
+* Listsimport { ReactMarkdown } from 'react-markdown';
+* [ ] timport props from './../../../../components/MarkdownComp/Writer';
+odo
+* [x] done
+![在这里插入图片描述](https://img-blog.csdnimg.cn/2021060522035638.png)
+只要@DSTransactional注解下任一环节发生异常，则全局多数据源事务回滚。
+如果BC上也有@DSTransactional会有影响吗？答：没有影响的。
+
+动态添加删除数据源：
+
+通过DynamicRoutingDataSource 类即可，它就相当于我们之前自定义的那个DynamicDataSource。
+~~~java
+@RestController
+@RequestMapping("/datasources")
+@Api(tags = "添加删除数据源")
+public class DataSourceController {
+    @Autowired
+    private DataSource dataSource;
+    // private final DataSourceCreator dataSourceCreator; //3.3.1及以下版本使用这个通用
+    @Autowired
+    private DefaultDataSourceCreator dataSourceCreator;
+    @Autowired
+    private BasicDataSourceCreator basicDataSourceCreator;
+    @Autowired
+    private JndiDataSourceCreator jndiDataSourceCreator;
+    @Autowired
+    private DruidDataSourceCreator druidDataSourceCreator;
+    @Autowired
+    private HikariDataSourceCreator hikariDataSourceCreator;
+    @Autowired
+    private BeeCpDataSourceCreator beeCpDataSourceCreator;
+    @Autowired
+    private Dbcp2DataSourceCreator dbcp2DataSourceCreator;
+
+    @GetMapping
+    @ApiOperation("获取当前所有数据源")
+    public Set<String> now() {
+        DynamicRoutingDataSource ds = (DynamicRoutingDataSource) dataSource;
+        return ds.getCurrentDataSources().keySet();
+    }
+
+    //通用数据源会根据maven中配置的连接池根据顺序依次选择。
+    //默认的顺序为druid>hikaricp>beecp>dbcp>spring basic
+    @PostMapping("/add")
+    @ApiOperation("通用添加数据源（推荐）")
+    public Set<String> add(@Validated @RequestBody DataSourceDTO dto) {
+        DataSourceProperty dataSourceProperty = new DataSourceProperty();
+        BeanUtils.copyProperties(dto, dataSourceProperty);
+        DynamicRoutingDataSource ds = (DynamicRoutingDataSource) dataSource;
+        DataSource dataSource = dataSourceCreator.createDataSource(dataSourceProperty);
+        ds.addDataSource(dto.getPollName(), dataSource);
+        return ds.getCurrentDataSources().keySet();
+    }
+
+    @PostMapping("/addBasic(强烈不推荐，除了用了马上移除)")
+    @ApiOperation(value = "添加基础数据源", notes = "调用Springboot内置方法创建数据源，兼容1,2")
+    public Set<String> addBasic(@Validated @RequestBody DataSourceDTO dto) {
+        DataSourceProperty dataSourceProperty = new DataSourceProperty();
+        BeanUtils.copyProperties(dto, dataSourceProperty);
+        DynamicRoutingDataSource ds = (DynamicRoutingDataSource) dataSource;
+        DataSource dataSource = basicDataSourceCreator.createDataSource(dataSourceProperty);
+        ds.addDataSource(dto.getPollName(), dataSource);
+        return ds.getCurrentDataSources().keySet();
+    }
+
+    @PostMapping("/addJndi")
+    @ApiOperation("添加JNDI数据源")
+    public Set<String> addJndi(String pollName, String jndiName) {
+        DynamicRoutingDataSource ds = (DynamicRoutingDataSource) dataSource;
+        DataSource dataSource = jndiDataSourceCreator.createDataSource(jndiName);
+        ds.addDataSource(pollName, dataSource);
+        return ds.getCurrentDataSources().keySet();
+    }
+
+    @PostMapping("/addDruid")
+    @ApiOperation("基础Druid数据源")
+    public Set<String> addDruid(@Validated @RequestBody DataSourceDTO dto) {
+        DataSourceProperty dataSourceProperty = new DataSourceProperty();
+        BeanUtils.copyProperties(dto, dataSourceProperty);
+        dataSourceProperty.setLazy(true);
+        DynamicRoutingDataSource ds = (DynamicRoutingDataSource) dataSource;
+        DataSource dataSource = druidDataSourceCreator.createDataSource(dataSourceProperty);
+        ds.addDataSource(dto.getPollName(), dataSource);
+        return ds.getCurrentDataSources().keySet();
+    }
+
+    @PostMapping("/addHikariCP")
+    @ApiOperation("基础HikariCP数据源")
+    public Set<String> addHikariCP(@Validated @RequestBody DataSourceDTO dto) {
+        DataSourceProperty dataSourceProperty = new DataSourceProperty();
+        BeanUtils.copyProperties(dto, dataSourceProperty);
+        dataSourceProperty.setLazy(true);//3.4.0版本以下如果有此属性，需手动设置，不然会空指针。
+        DynamicRoutingDataSource ds = (DynamicRoutingDataSource) dataSource;
+        DataSource dataSource = hikariDataSourceCreator.createDataSource(dataSourceProperty);
+        ds.addDataSource(dto.getPollName(), dataSource);
+        return ds.getCurrentDataSources().keySet();
+    }
+
+    @PostMapping("/addBeeCp")
+    @ApiOperation("基础BeeCp数据源")
+    public Set<String> addBeeCp(@Validated @RequestBody DataSourceDTO dto) {
+        DataSourceProperty dataSourceProperty = new DataSourceProperty();
+        BeanUtils.copyProperties(dto, dataSourceProperty);
+        dataSourceProperty.setLazy(true);//3.4.0版本以下如果有此属性，需手动设置，不然会空指针。
+        DynamicRoutingDataSource ds = (DynamicRoutingDataSource) dataSource;
+        DataSource dataSource = beeCpDataSourceCreator.createDataSource(dataSourceProperty);
+        ds.addDataSource(dto.getPollName(), dataSource);
+        return ds.getCurrentDataSources().keySet();
+    }
+
+    @PostMapping("/addDbcp")
+    @ApiOperation("基础Dbcp数据源")
+    public Set<String> addDbcp(@Validated @RequestBody DataSourceDTO dto) {
+        DataSourceProperty dataSourceProperty = new DataSourceProperty();
+        BeanUtils.copyProperties(dto, dataSourceProperty);
+        dataSourceProperty.setLazy(true);//3.4.0版本以下如果有此属性，需手动设置，不然会空指针。
+        DynamicRoutingDataSource ds = (DynamicRoutingDataSource) dataSource;
+        DataSource dataSource = dbcp2DataSourceCreator.createDataSource(dataSourceProperty);
+        ds.addDataSource(dto.getPollName(), dataSource);
+        return ds.getCurrentDataSources().keySet();
+    }
+
+    @DeleteMapping
+    @ApiOperation("删除数据源")
+    public String remove(String name) {
+        DynamicRoutingDataSource ds = (DynamicRoutingDataSource) dataSource;
+        ds.removeDataSource(name);
+        return "删除成功";
+    }
+}
+~~~
+java
+~~~java
+@MapperScan(basePackages = "com.tuling.dynamic.datasource.mapper.w", sqlSessionFactoryRef = "wSqlSessionFactory")
+public class WDataSourceConfig {
+    @Bean
+    @Primary
+    public SqlSessionFactory wSqlSessionFactory(@Qualifier("dataSource1") DataSource dataSource1) throws Exception {
+        final SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
+        sessionFactory.setDataSource(dataSource1);
+        sessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:mapper/w/*.xml"));
+        /*主库设置sql控制台打印*/
+        org.apache.ibatis.session.Configuration configuration = new org.apache.ibatis.session.Configuration();
+        configuration.setLogImpl(StdOutImpl.class);
+        sessionFactory.setConfiguration(configuration);
+        return sessionFactory.getObject();
+    }
+}
+~~~
+###### 六号标题
+Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt temporibus illum quisquam nemo, error quae ipsum a dolorum inventore incidunt officiis provident quis aliquam esse cum odio voluptate, beatae corrupti saepe quidem sed alias qui cumque iure. Eaque atque quisquam tempora maiores iusto aperiam distinctio consequatur exercitationem nesciunt ipsa, mollitia totam reiciendis porro facere, quidem, velit modi enim cumque voluptate eius sapiente nemo. Aut accusantium ullam velit officia. Neque maxime quos laboriosam voluptates natus temporibus eligendi explicabo aliquam, doloremque nisi alias deleniti autem nesciunt magnam similique aperiam debitis dolor, error nostrum cum, nemo fugit impedit. Ipsa dolore voluptates autem. Labore!
+Lorem, ipsum dolor sit amet consectetur adipisicing elit. Incidunt repudiandae illum dolore corporis unde. Dicta quod eius nemo consectetur porro animi optio cupiditate nostrum id sunt est, voluptate nesciunt expedita nobis, deserunt dolor magni enim. Maiores aut architecto officia cupiditate sed maxime facilis dignissimos? Natus, tempora hic corporis necessitatibus sequi dolore iure debitis facilis nam fugiat aspernatur earum laboriosam nesciunt adipisci neque, accusantium animi? Ex vitae temporibus adipisci incidunt, aperiam aut at sed iusto eaque quasi, impedit necessitatibus inventore modi consectetur labore aliquam fugit, veniam minus illo cum beatae? Accusamus cumque eius cupiditate a quo reiciendis voluptate autem itaque. Modi incidunt consequuntur harum optio a dolores eum, sint sapiente ratione! Ad est tenetur tempora repellendus, sint deserunt quidem commodi itaque? Nam, quibusdam a? Nemo aliquam facere adipisci, repellat aspernatur dignissimos minima dolor, facilis quod animi possimus sapiente culpa cum, dolores vel ipsa recusandae pariatur maiores aut at. Amet corporis beatae, praesentium in perspiciatis totam veritatis commodi quibusdam eveniet fuga aut odio consectetur reiciendis asperiores autem vitae eligendi ipsum. Consequatur facere excepturi aspernatur ipsam laudantium aperiam vero hic, nesciunt eos repudiandae iste, tempore ipsum dolorum odio sit at, non voluptate reprehenderit neque dolores. Esse sunt minima sequi ducimus sint veritatis repellat, odio ex similique laboriosam perspiciatis eos delectus consequatur mollitia eius, rem possimus ratione officia quis beatae earum sapiente. Provident corrupti quos quasi unde. Perferendis dolorum ad, eligendi repudiandae optio omnis necessitatibus? Distinctio ipsum, necessitatibus fugiat culpa impedit reprehenderit debitis architecto iste mollitia obcaecati expedita inventore quasi libero ipsam quos quibusdam quod vel eum perspiciatis natus ducimus corrupti. Minus, perferendis. Beatae in reprehenderit ea voluptas exercitationem? Quia, qui? Rem, repudiandae excepturi. Repudiandae repellat ea sit sint facere excepturi veritatis cupiditate. Repudiandae aspernatur, vel debitis quae quia eum quam dicta perspiciatis assumenda aut magni quasi eligendi maxime nisi excepturi, sit nulla facere, laboriosam eos ex atque quod a quis dignissimos. Similique blanditiis adipisci minus, consectetur at placeat modi et, omnis ex eum neque corporis est dignissimos ipsa sapiente dicta, architecto saepe? Corrupti rem laboriosam corporis vel quam quas modi minima, reiciendis dolorum perspiciatis molestiae laborum doloremque beatae repudiandae eaque. Officiis aspernatur dolore dolor aut quia ducimus. Fuga laboriosam, atque velit repellendus expedita minus excepturi. Praesentium beatae eligendi quas aut rerum hic, autem voluptatibus consequuntur accusantium sequi iste explicabo in ratione ipsam? Sed quod ut magnam autem nisi itaque perferendis fuga culpa, nam voluptates hic non, ipsa unde mollitia aliquam quia ipsam iure impedit in quas? Nostrum, quidem ea quae facilis blanditiis debitis! Excepturi commodi saepe ratione molestias? Soluta fuga, voluptates corporis veniam quidem, modi qui recusandae tempore dolor repellendus eaque expedita perferendis, repellat atque nihil praesentium doloremque illo error omnis ipsum exercitationem deleniti! Quae, architecto eos dignissimos quod laborum voluptatibus velit debitis iusto distinctio pariatur quisquam magni cum eveniet culpa laboriosam voluptates! Sunt soluta ratione consequuntur error, quas odit. Nihil eaque consequatur molestiae perspiciatis minima, reiciendis, eos ipsa tempore hic odio, quis expedita recusandae a harum voluptas? Possimus, quas nulla accusamus tempore placeat maxime reprehenderit minus voluptates ipsum obcaecati, eos molestiae modi! Repudiandae, impedit eius! Excepturi eligendi sint consequatur omnis et corrupti incidunt, nam pariatur. Inventore velit voluptatibus incidunt soluta maiores eligendi eveniet necessitatibus suscipit recusandae vero mollitia magni quo ipsam, ex culpa, debitis cupiditate repellat iure molestiae quibusdam veritatis error fugiat beatae. Tempora distinctio animi tempore blanditiis ipsam dolores itaque! Incidunt impedit labore itaque, libero dolores repellat suscipit, placeat recusandae perspiciatis animi autem quas quam ipsam aperiam, est quos tenetur consequuntur amet laborum quis laboriosam nostrum adipisci vitae. Libero temporibus deserunt odit mollitia inventore labore incidunt voluptatem quo tenetur quae qui repellat quidem nobis exercitationem dicta dolore asperiores natus minus, molestias dolor error vel rerum. Obcaecati fuga aut distinctio eveniet in ipsum modi maiores? Harum recusandae neque perspiciatis nam, vitae at reiciendis beatae facere quibusdam dignissimos impedit eveniet magnam dolore hic quod cum commodi sequi nisi officia assumenda ex libero minus natus deleniti! Eligendi, labore molestias neque culpa non et vel dolores! Doloribus asperiores, maiores aspernatur necessitatibus sequi qui laboriosam tenetur quae cupiditate debitis ipsum esse iste ex suscipit rem quasi? Laborum reprehenderit fugiat recusandae! Eius nulla nisi incidunt itaque dolor doloribus delectus doloremque ab ut eum iure maxime harum maiores adipisci quae quam, beatae facilis? Fuga culpa unde, temporibus sunt at atque eos quibusdam nemo nulla neque alias corporis commodi laboriosam ratione, placeat repudiandae quia quo ipsam quisquam? Neque vel praesentium cum animi deserunt, dignissimos consectetur architecto quidem quas tempora autem ex modi distinctio, reprehenderit nihil qui dolor iure in consequatur. Harum perferendis odio illo fuga cum quo tempora excepturi voluptates, rerum repudiandae iure? Corporis est fuga nulla odio libero, iste vel et accusamus minima quae beatae reprehenderit saepe possimus placeat consequatur debitis ex dicta veniam, aliquam neque, veritatis ducimus atque labore ea. Excepturi error ad accusamus vero, maiores modi, rem quam perferendis dolorem fuga veniam. Nobis molestias doloribus nisi dolorum neque aliquam incidunt dolores sed inventore ea libero quos et repudiandae eveniet laudantium eos perferendis sunt, eligendi facere ratione! Fugit alias ab dolorum corporis iusto temporibus qui, aspernatur, possimus reprehenderit unde voluptate assumenda natus aliquam! Quaerat amet autem repellat fugiat corrupti et possimus. Quaerat itaque eum cumque in architecto et repellat ipsa, culpa animi ipsum hic rerum accusantium provident voluptas unde, placeat possimus, assumenda quasi dignissimos maiores obcaecati veritatis quisquam! Debitis nostrum eum deleniti rerum dignissimos necessitatibus nisi omnis blanditiis soluta sunt nulla perspiciatis ratione hic at, eveniet explicabo, asperiores magnam quasi perferendis ut id dolorum? Iste perferendis similique aliquid laboriosam. Dignissimos repellendus, officia laboriosam tempora a explicabo corporis asperiores quos est vero qui cupiditate hic iusto in voluptatem ipsam magnam earum exercitationem perspiciatis omnis ipsa deleniti porro id. Similique aut eligendi necessitatibus suscipit, reprehenderit aliquam numquam nobis? Accusamus dolor nam neque magnam voluptate voluptatibus quos alias aperiam praesentium sed sit suscipit officiis aspernatur doloremque nisi repellendus itaque earum repellat, tempore impedit obcaecati reprehenderit iusto veniam saepe. Repellendus dolores animi excepturi, sapiente dicta hic incidunt fugit architecto asperiores aut, velit sint voluptatibus distinctio facilis laudantium optio in omnis. Ea maiores vel tempore libero illum voluptates in laborum possimus quos.
+
+`;
+
 
 const Details: React.FC = () => {
   // const params = useParams();
   // console.log(params.artcleId);
   return (
     <Layout>
-      <Sider theme="light">
-        <AnchorComp />
+      <Sider theme="light" >
+        <Anchor>
+          {/* https://github.com/parksben/markdown-navbar */}
+          <MarkdownNavbar source={markdown} ordered={false} />
+        </Anchor>
       </Sider>
       <Layout>
         <Content style={{ margin: "24px 16px 0" }}>
@@ -45,14 +249,10 @@ const Details: React.FC = () => {
             <Row>
               <Col>发布时间</Col>
             </Row>
-            <Image src="https://img-blog.csdnimg.cn/2021060522035638.png" />
-            <Image src="https://img-blog.csdnimg.cn/2021060517021422.png" />
-
-            <ReactMarkdown
-              children={markdown}
-              //   escapeHtml={false} //不进行HTML标签的转化
-            />
+            <ReactMarkdownReader>{markdown}</ReactMarkdownReader>
           </div>
+          <hr />
+          <Writer />
         </Content>
       </Layout>
     </Layout>
