@@ -113,7 +113,7 @@ const ArtcleList: React.FC = () => {
                       />
                     </Avatar>
                   }
-                  title={<a href="/api/title">{`文章《${item.email}》`}</a>}
+                  title={<a href="artcle/2">{`文章《${item.email}》`}</a>}
                   description={item.email}
                 />
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit.

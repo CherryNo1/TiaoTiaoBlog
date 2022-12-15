@@ -4,6 +4,7 @@ import React from "react";
 import { Anchor, Col, Image, Layout, Menu, Row, theme } from "antd";
 import AnchorComp from "../../../../components/AnchorComp";
 import ReactMarkdown from "react-markdown";
+import CodeBlock from "../../../../components/CodeBlock/CodeBlock";
 
 const { Header, Content, Footer, Sider } = Layout;
 let markdown =
@@ -18,8 +19,8 @@ let markdown =
   "```const a=2; ```";
 
 const Details: React.FC = () => {
-  const params = useParams();
-  console.log(params.artcleId);
+  // const params = useParams();
+  // console.log(params.artcleId);
   return (
     <Layout>
       <Sider theme="light">
@@ -50,6 +51,7 @@ const Details: React.FC = () => {
             </div>
             <ReactMarkdown
               children={markdown}
+
               //   escapeHtml={false} //不进行HTML标签的转化
             />
           </div>
