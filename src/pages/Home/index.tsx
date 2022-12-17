@@ -13,27 +13,52 @@ import {
 } from "antd";
 import Logo from "../../Icons/Logo";
 import {
-  Navigate,
   Outlet,
-  useLocation,
-  useParams,
-  useRoutes,
   useNavigate,
-  useMatch,
   Link,
 } from "react-router-dom";
 import {
-  LaptopOutlined,
+  BarChartOutlined,
+  DesktopOutlined,
+  FileOutlined,
+  PieChartOutlined,
   NotificationOutlined,
   UserOutlined,
+  RiseOutlined
 } from "@ant-design/icons";
+
 const { Header, Content, Footer, Sider } = Layout;
 import { Input, Space } from "antd";
 import { render } from "react-dom";
+import { MenuItem } from "./menuItem";
 
 const { Search } = Input;
 
 const onSearch = (value: string) => console.log(value);
+//菜单Item类型
+
+function getItem(label: React.ReactNode, key: React.Key, icon?: React.ReactNode, children?: MenuItem[],): MenuItem {
+  return { key, icon, children, label, } as MenuItem;
+}
+
+const items: MenuItem[] = [
+  getItem('文章列表', '/home/artcle', <BarChartOutlined />),
+  getItem('Springboot', '1', <PieChartOutlined />),
+  getItem('SpringCloud', '2', <DesktopOutlined />),
+  getItem('前端', '前端父目录', <UserOutlined />, [
+    getItem('React', '3'),
+    getItem('Vue', '4'),
+    getItem('Angular', '5'),
+  ]),
+  getItem('后端', '后端父目录', <RiseOutlined />, [
+    getItem('Java', '6'),
+    getItem('数据库', '7'),
+    getItem('Docker', '8'),
+  ]),
+  getItem('归档', '9', <FileOutlined />),
+];
+
+
 const Home: React.FC = (props) => {
   var navigator = useNavigate();
   const toLogin = () => {
@@ -44,6 +69,11 @@ const Home: React.FC = (props) => {
     token: { colorBgContainer },
   } = theme.useToken();
 
+
+  const menuClickHandle = (menu: MenuItem) => {
+    navigator(`${menu?.key}`, { replace: true })
+    console.log(`点击了导航栏并跳转到${menu?.key}`);
+  }
   return (
     <Layout>
       <Header>
@@ -56,19 +86,8 @@ const Home: React.FC = (props) => {
               theme="dark"
               mode="horizontal"
               defaultSelectedKeys={["1"]}
-              items={[
-                "Springboot",
-                "SpringCloud",
-                "GateWay",
-                "SpringCloud",
-                "GateWay",
-              ].map((element, index) => {
-                const key = index + 1;
-                return {
-                  key,
-                  label: `${element}`,
-                };
-              })}
+              items={items}
+              onClick={menuClickHandle}
             />
           </Col>
           <Col offset={1} span={3}>
