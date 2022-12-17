@@ -20,6 +20,7 @@ import {
   useRoutes,
   useNavigate,
   useMatch,
+  Link,
 } from "react-router-dom";
 import {
   LaptopOutlined,
@@ -33,7 +34,7 @@ import { render } from "react-dom";
 const { Search } = Input;
 
 const onSearch = (value: string) => console.log(value);
-const Home: React.FC = () => {
+const Home: React.FC = (props) => {
   var navigator = useNavigate();
   const toLogin = () => {
     navigator("/login");
@@ -108,9 +109,22 @@ const Home: React.FC = () => {
             <NotificationOutlined />:<b>公众号:Java精灵</b>
             <Divider />
             <Image width={"9vw"} src="/src/assets/images/javaLj.png" />
+            <Divider />
+            <Row gutter={20} >
+              <Col> <Link to={'artcle'} >
+                <Button type="primary">
+                  文章列表
+                </Button>
+              </Link>
+              </Col>
+              <Col>  <Link to={'user'} > <Button type="primary">
+                用户中心
+              </Button></Link></Col>
+            </Row>
+
           </Sider>
         </Layout>
-      </Content>
+      </Content >
       <Footer
         className="footer"
         style={{
@@ -119,7 +133,7 @@ const Home: React.FC = () => {
       >
         跳跳是只猫
       </Footer>
-    </Layout>
+    </Layout >
   );
 };
 

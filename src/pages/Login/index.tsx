@@ -13,7 +13,7 @@ const Login: React.FC = () => {
             url: '/api/auth/login',
             data: values,
             method: 'POST'
-        }).then((res) => {
+        }).then((res: any) => {
             // console.log(res);
             localStorage.setItem("Token", res)
             navigate('/home', { state: 'alien' })

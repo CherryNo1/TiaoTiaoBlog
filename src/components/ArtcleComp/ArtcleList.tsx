@@ -106,14 +106,14 @@ const ArtcleList: React.FC = () => {
               >
                 <List.Item.Meta
                   avatar={
-                    <Avatar src={`/api/test`}>
+                    <Avatar src={`#`}>
                       <img
                         width={32}
                         src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
                       />
                     </Avatar>
                   }
-                  title={<a href="artcle/2">{`文章《${item.email}》`}</a>}
+                  title={<a href="2">{`文章《${item.email}》`}</a>}
                   description={item.email}
                 />
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit.
