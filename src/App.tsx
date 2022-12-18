@@ -1,18 +1,17 @@
 import React, { lazy } from "react";
 import { Breadcrumb, Button, ConfigProvider, FloatButton, theme } from "antd";
-import {
-  Outlet, useRoutes,
-} from "react-router-dom";
+import { Outlet, useRoutes } from "react-router-dom";
 import { CustomerServiceOutlined, CommentOutlined } from "@ant-design/icons";
 import routes from "./router";
 const App: React.FC = () => {
-  const router = useRoutes(routes)
+  const router = useRoutes(routes);
+
   return (
     <React.Fragment>
       <ConfigProvider
         theme={{
           token: {
-            colorBgContainer: '#fffff',
+            colorBgContainer: "#fffff",
             colorPrimary: "#1677FF",
           },
           components: {
@@ -40,7 +39,6 @@ const App: React.FC = () => {
         </FloatButton.Group>
       </ConfigProvider>
       {router}
-
     </React.Fragment>
   );
 };
