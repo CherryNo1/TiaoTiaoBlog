@@ -82,9 +82,9 @@ const userCenterItem: MenuItem[] = [
 ];
 
 const Home: React.FC = (props) => {
-  service.get("/api/test").then((res) => {
-    console.log("home页面第一个请求");
-  });
+  // service.get("/api/test").then((res) => {
+  //   console.log("home页面第一个请求");
+  // });
 
   var navigator = useNavigate();
   const toLogin = () => {

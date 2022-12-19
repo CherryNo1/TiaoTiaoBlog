@@ -20,14 +20,15 @@ import { useEffect } from "react";
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
-  const onFinish = (values: any) => {
+  const onFinish = async (values: any) => {
     service({
       url: "/api/auth/login",
       data: values,
       method: "POST",
     }).then((res: ResponseData) => {
+      debugger;
       console.log(res);
-      // debugger;
+      alert(res.data.token);
       localStorage.setItem("token", res.data.token);
       navigate("/home", { state: "alien" });
     });
