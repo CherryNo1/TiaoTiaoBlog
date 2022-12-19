@@ -27,6 +27,7 @@ const Login: React.FC = () => {
       method: "POST",
     }).then((res: ResponseData) => {
       console.log(res);
+      // debugger;
       localStorage.setItem("token", res.data.token);
       navigate("/home", { state: "alien" });
     });

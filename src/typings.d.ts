@@ -4,5 +4,4 @@ type ResponseData = {
   success?: boolean;
   data?: any;
 };
-
 export { ResponseData };

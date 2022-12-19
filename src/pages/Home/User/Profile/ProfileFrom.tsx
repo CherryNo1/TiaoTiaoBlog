@@ -1,113 +1,80 @@
-import React, { useState } from 'react';
-import { PlusOutlined } from '@ant-design/icons';
+import React, { Fragment, useState } from "react";
+import { UserOutlined, PlusOutlined } from "@ant-design/icons";
 import {
-    Form,
-    Input,
-    Button,
-    Radio,
-    Select,
-    Cascader,
-    DatePicker,
-    InputNumber,
-    TreeSelect,
-    Switch,
-    Checkbox,
-    Upload,
-} from 'antd';
+  Form,
+  Input,
+  Button,
+  Radio,
+  Select,
+  Cascader,
+  DatePicker,
+  InputNumber,
+  TreeSelect,
+  Switch,
+  Checkbox,
+  Upload,
+  Avatar,
+} from "antd";
 
 const { RangePicker } = DatePicker;
 const { TextArea } = Input;
-
+const postFromData = (data: any) => {
+  console.log("提交表单数据");
+  console.log(data);
+};
 const ProfileForm = () => {
-    const [componentDisabled, setComponentDisabled] = useState<boolean>(true);
-    const onFormLayoutChange = ({ disabled }: { disabled: boolean }) => {
-        setComponentDisabled(disabled);
-    };
-
-    return (
-        <>
-            <Checkbox
-                checked={componentDisabled}
-                onChange={(e) => setComponentDisabled(e.target.checked)}
-            >
-                Form disabled
-            </Checkbox>
-            <Form
-                labelCol={{ span: 4 }}
-                wrapperCol={{ span: 14 }}
-                layout="horizontal"
-                onValuesChange={onFormLayoutChange}
-                disabled={componentDisabled}
-            >
-                <Form.Item label="Checkbox" name="disabled" valuePropName="checked">
-                    <Checkbox>Checkbox</Checkbox>
-                </Form.Item>
-                <Form.Item label="Radio">
-                    <Radio.Group>
-                        <Radio value="apple"> Apple </Radio>
-                        <Radio value="pear"> Pear </Radio>
-                    </Radio.Group>
-                </Form.Item>
-                <Form.Item label="Input">
-                    <Input />
-                </Form.Item>
-                <Form.Item label="Select">
-                    <Select>
-                        <Select.Option value="demo">Demo</Select.Option>
-                    </Select>
-                </Form.Item>
-                <Form.Item label="TreeSelect">
-                    <TreeSelect
-                        treeData={[
-                            { title: 'Light', value: 'light', children: [{ title: 'Bamboo', value: 'bamboo' }] },
-                        ]}
-                    />
-                </Form.Item>
-                <Form.Item label="Cascader">
-                    <Cascader
-                        options={[
-                            {
-                                value: 'zhejiang',
-                                label: 'Zhejiang',
-                                children: [
-                                    {
-                                        value: 'hangzhou',
-                                        label: 'Hangzhou',
-                                    },
-                                ],
-                            },
-                        ]}
-                    />
-                </Form.Item>
-                <Form.Item label="DatePicker">
-                    <DatePicker />
-                </Form.Item>
-                <Form.Item label="RangePicker">
-                    <RangePicker />
-                </Form.Item>
-                <Form.Item label="InputNumber">
-                    <InputNumber />
-                </Form.Item>
-                <Form.Item label="TextArea">
-                    <TextArea rows={4} />
-                </Form.Item>
-                <Form.Item label="Switch" valuePropName="checked">
-                    <Switch />
-                </Form.Item>
-                <Form.Item label="Upload" valuePropName="fileList">
-                    <Upload action="/upload.do" listType="picture-card">
-                        <div>
-                            <PlusOutlined />
-                            <div style={{ marginTop: 8 }}>Upload</div>
-                        </div>
-                    </Upload>
-                </Form.Item>
-                <Form.Item label="Button">
-                    <Button>Button</Button>
-                </Form.Item>
-            </Form>
-        </>
-    );
+  return (
+    <Fragment>
+      <Form
+        name="profileData"
+        labelCol={{ span: 4 }}
+        wrapperCol={{ span: 14 }}
+        layout="horizontal"
+        colon={false}
+        onFinish={postFromData}
+      >
+        <Form.Item label="头像" name="avatar">
+          <Avatar
+            size={64}
+            src={
+              "https://rs-channel.huanqiucdn.cn/imageDir/ac55d6828e4bef43db2f7e1ea7b20ebcu5.jpg"
+            }
+          />
+        </Form.Item>
+        <Form.Item label="昵称" name="nikename">
+          <Input />
+        </Form.Item>
+        <Form.Item label="性别" name="gender">
+          <Radio.Group>
+            <Radio value="man"> 男 </Radio>
+            <Radio value="woman"> 女 </Radio>
+          </Radio.Group>
+        </Form.Item>
+        <Form.Item label="用户ID" name="userId">
+          <Input />
+        </Form.Item>
+        <Form.Item label="个人简介" name="profileInfo">
+          <Input />
+        </Form.Item>
+        <Form.Item label="出生日期" name="birthday">
+          <DatePicker />
+        </Form.Item>
+        <Form.Item label="Upload" valuePropName="fileList">
+          <Upload action="/upload.do" listType="picture-card">
+            <div>
+              <PlusOutlined />
+              <div style={{ marginTop: 8 }}>Upload</div>
+            </div>
+          </Upload>
+        </Form.Item>
+        <Form.Item style={{ justifyContent: "center", display: "flex" }}>
+          <Button htmlType="submit" type="primary" style={{ width: "20vw" }}>
+            修改
+          </Button>
+        </Form.Item>
+      </Form>
+    </Fragment>
+  );
 };
 
-export default ProfileForm
+export default ProfileForm;

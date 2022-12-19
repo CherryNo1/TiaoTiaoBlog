@@ -142,7 +142,6 @@ const Home: React.FC = (props) => {
               </React.Fragment>
             ) : (
               <Button size="large" onClick={toLogin}>
-                {" "}
                 登录/注册
               </Button>
             )}
