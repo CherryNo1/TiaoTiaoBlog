@@ -25,6 +25,7 @@ const routes: RouteObject[] = [
         path: '/',
         element: <Navigate to={'/login'} />,
     },
+
     {
         path: '/home',
         element: <Home />,
@@ -90,9 +91,15 @@ const routes: RouteObject[] = [
         element: <Login />
     },
     {
+        path: '/404',
+        element: <NotFount />
+    },
+    {
         path: '/*',
         element: <NotFount />
-    }
+    },
 
 ]
+
+
 export default routes

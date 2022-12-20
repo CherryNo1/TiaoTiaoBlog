@@ -1,11 +1,13 @@
-import React, { lazy } from "react";
+import React, { lazy, Suspense, useEffect } from "react";
 import { Breadcrumb, Button, ConfigProvider, FloatButton, theme } from "antd";
-import { Outlet, useRoutes } from "react-router-dom";
+import { Outlet, useRoutes, Navigate, useNavigate } from "react-router-dom";
 import { CustomerServiceOutlined, CommentOutlined } from "@ant-design/icons";
 import routes from "./router";
+import { isLogin } from './api/index';
 const App: React.FC = () => {
   const router = useRoutes(routes);
-
+  const pathname = location.pathname
+  const navigate = useNavigate()
   return (
     <React.Fragment>
       <ConfigProvider

@@ -64,32 +64,12 @@ const items: MenuItem[] = [
   getItem("归档", "9", <FileOutlined />),
 ];
 
-const userCenterItem: MenuItem[] = [
-  getItem("个人中心", "/user/center", <BarChartOutlined />),
-  getItem("Springboot", "1", <PieChartOutlined />),
-  getItem("SpringCloud", "2", <DesktopOutlined />),
-  getItem("前端", "前端父目录", <UserOutlined />, [
-    getItem("React", "3"),
-    getItem("Vue", "4"),
-    getItem("Angular", "5"),
-  ]),
-  getItem("后端", "后端父目录", <RiseOutlined />, [
-    getItem("Java", "6"),
-    getItem("数据库", "7"),
-    getItem("Docker", "8"),
-  ]),
-  getItem("归档", "9", <FileOutlined />),
-];
-
 const Home: React.FC = (props) => {
   // service.get("/api/test").then((res) => {
   //   console.log("home页面第一个请求");
   // });
 
   var navigator = useNavigate();
-  const toLogin = () => {
-    navigator("/login");
-  };
 
   const {
     token: { colorBgContainer },
@@ -141,7 +121,9 @@ const Home: React.FC = (props) => {
                 </Dropdown>
               </React.Fragment>
             ) : (
-              <Button size="large" onClick={toLogin}>
+              <Button size="large" onClick={() => {
+                navigator("/login");
+              }}>
                 登录/注册
               </Button>
             )}

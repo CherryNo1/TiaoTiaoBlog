@@ -1,4 +1,3 @@
-import { RequestData } from "@ant-design/pro-components/es";
 import axios from "axios";
 
 export const service = axios.create({
@@ -6,22 +5,24 @@ export const service = axios.create({
 });
 // 请求拦截器
 service.interceptors.request.use(
-  (req) => {
+  // onFulfilled
+  req => {
     const token = localStorage.getItem("token");
-    console.log(token);
-    // 如果能获取到Token，那么就进入if ，如果获取不到就为null,跳转到登陆页
     if (token != null) {
-      console.log(token);
-      (req.headers || [])["token"] = token;
+      //将token添加到请求头，发送给后端
+      req.headers["token"] = token;
       req.headers?.head?.set("token", token);
     } else {
-      console.log("token is not fount,ready to login page");
-      console.log(token);
-      window.location.href = "/login";
+      console.log("token is not fount");
+      // 如果不是登录页，那么就强制回到登录页。否则不动
+      if (window.location.pathname != '/login') {
+        window.location.href = "/login";
+      }
     }
     return req;
   },
-  (error) => {
+  // onRejected
+  error => {
     console.log(error); // for debug
     return Promise.reject(error);
   }
@@ -29,11 +30,8 @@ service.interceptors.request.use(
 
 service.interceptors.response.use(
   (res) => {
-    let data = res.data;
-    // 处理自己的业务逻辑，比如判断 token 是否过期等等
-
-    // 代码块
-    return data;
+    console.log(res);
+    return res.data;
   },
   (error) => {
     console.log(error);

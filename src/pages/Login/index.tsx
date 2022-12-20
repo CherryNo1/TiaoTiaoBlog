@@ -20,19 +20,22 @@ import { useEffect } from "react";
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
+
   const onFinish = async (values: any) => {
-    service({
+    await service({
       url: "/api/auth/login",
       data: values,
       method: "POST",
     }).then((res: ResponseData) => {
-      debugger;
       console.log(res);
-      alert(res.data.token);
-      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("token", res.data);
       navigate("/home", { state: "alien" });
+    }).catch((res) => {
+      console.log(res);
+      console.log('登陆失败');
     });
   };
+
 
   const onFinishFailed = (errorInfo: any) => {
     console.log("校验错误");
