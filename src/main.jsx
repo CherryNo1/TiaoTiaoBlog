@@ -13,11 +13,8 @@ root.render(
     {/* <BaseRouter /> */}
 
 
-
-    {/* 数组对象的路由模式使用下面的 */}
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    {/* 数组对象的路由模式使用下面的,build时使用HashRouter */}
+    <App />
 
 
   </React.StrictMode >

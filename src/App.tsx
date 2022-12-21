@@ -1,13 +1,10 @@
 import React, { lazy, Suspense, useEffect } from "react";
 import { Breadcrumb, Button, ConfigProvider, FloatButton, theme } from "antd";
-import { Outlet, useRoutes, Navigate, useNavigate } from "react-router-dom";
+import { Outlet, useRoutes, Navigate, useNavigate, RouterProvider, createBrowserRouter } from "react-router-dom";
 import { CustomerServiceOutlined, CommentOutlined } from "@ant-design/icons";
-import routes from "./router";
-import { isLogin } from './api/index';
+import routers from './router/index';
+
 const App: React.FC = () => {
-  const router = useRoutes(routes);
-  const pathname = location.pathname
-  const navigate = useNavigate()
   return (
     <React.Fragment>
       <ConfigProvider
@@ -40,7 +37,8 @@ const App: React.FC = () => {
           <FloatButton icon={<CommentOutlined />} />
         </FloatButton.Group>
       </ConfigProvider>
-      {router}
+      {/* {router} */}
+      <RouterProvider router={routers} fallbackElement={<>error</>}></RouterProvider>
     </React.Fragment>
   );
 };

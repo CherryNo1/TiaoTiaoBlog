@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import {
   Anchor,
   Avatar,
@@ -10,6 +10,7 @@ import {
   Image,
   Layout,
   Menu,
+  message,
   Row,
   theme,
 } from "antd";
@@ -68,6 +69,7 @@ const Home: React.FC = (props) => {
   // service.get("/api/test").then((res) => {
   //   console.log("home页面第一个请求");
   // });
+
 
   var navigator = useNavigate();
 
