@@ -13,16 +13,38 @@ import ModifyPwd from "@/pages/Home/User/AccountSetting/ModifyPwd";
 import AccountWriteOff from "@/pages/Home/User/AccountSetting/AccountWriteOff";
 import MyArtcleList from "@/pages/Home/User/MyArtcleList";
 import ShowLoginHistory from "@/pages/Home/User/AccountSetting/ShowLoginHistory";
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, createHashRouter } from 'react-router-dom';
 import User from "@/pages/Home/User";
-
+import Call from "@/pages/Test/Call"
+import FuncComponent from "@/pages/Test/FuncComponent"
+import ClassComponent from "@/pages/Test/ClassComponent"
+import ReduxTest from "@/pages/Test/ReduxTest/ReduxTest";
 const lazyRouter = (jsxCom: JSX.Element) =>    // 路由懒加载
     <React.Suspense fallback={<h1>加载中</h1>}>
         {jsxCom}
     </React.Suspense>
 
 const router = createBrowserRouter([
+    {
+        path: '/call',
+        element: <Call />
 
+    },
+    {
+        path: '/func',
+        element: <FuncComponent />
+
+    },
+    {
+        path: '/class',
+        element: <ClassComponent />
+
+    },
+    {
+        path: '/redux',
+        element: <ReduxTest />
+
+    },
     {
         path: '/',
         element: <Navigate to={'/login'} />,

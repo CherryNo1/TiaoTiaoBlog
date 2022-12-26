@@ -15,7 +15,7 @@ import {
   theme,
 } from "antd";
 import Logo from "../../Icons/Logo";
-import { Outlet, useNavigate, Link, useLocation } from "react-router-dom";
+import { Outlet, useNavigate, Link, useLocation, useOutlet, useResolvedPath, resolvePath } from "react-router-dom";
 import {
   BarChartOutlined,
   DesktopOutlined,
@@ -69,8 +69,10 @@ const Home: React.FC = (props) => {
   // service.get("/api/test").then((res) => {
   //   console.log("home页面第一个请求");
   // });
-
-
+  const outlet = useOutlet()
+  console.log(outlet);
+  const resolvePath = useResolvedPath('/func/id=21')
+  console.log(resolvePath);
   var navigator = useNavigate();
 
   const {
