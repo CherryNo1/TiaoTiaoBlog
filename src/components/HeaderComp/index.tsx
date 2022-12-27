@@ -13,6 +13,7 @@ import {
   message,
   Row,
   theme,
+  MenuProps,
 } from "antd";
 import Logo from "../../Icons/Logo";
 import {
@@ -38,42 +39,73 @@ import {
 import { Input, Space } from "antd";
 import isAuth from "@/pages/Auth/index";
 import { MenuItem } from "@/typings";
+import { ItemType, MenuItemType, SubMenuType, MenuItemGroupType, MenuDividerType } from "antd/es/menu/hooks/useItems";
+import { getItem } from "@/utils/commonUtils";
 
 const { Search } = Input;
 //菜单类型
 
 const onSearch = (value: string) => console.log(value);
-//菜单Item类型
-function getItem(
-  label: React.ReactNode,
-  key: React.Key,
-  icon?: React.ReactNode,
-  children?: MenuItem[]
-): MenuItem {
-  return { key, icon, children, label } as MenuItem;
-}
 
 const items: MenuItem[] = [
-  getItem("文章列表", "/home/artcle", <BarChartOutlined />),
-  getItem("Springboot", "1", <PieChartOutlined />),
-  getItem("SpringCloud", "2", <DesktopOutlined />),
+  getItem("文章列表", "/home/article", <BarChartOutlined />),
+  getItem("Springboot", "/home/article/springboot", <PieChartOutlined />),
+  getItem("SpringCloud", "/home/article/springCloud", <DesktopOutlined />),
   getItem("前端", "前端父目录", <UserOutlined />, [
-    getItem("React", "3"),
-    getItem("Vue", "4"),
-    getItem("Angular", "5"),
+    getItem("React", "/home/article/front/react"),
+    getItem("Vue", "/home/article/front/vue"),
+    getItem("Angular", "/home/article/front/angular"),
   ]),
   getItem("后端", "后端父目录", <RiseOutlined />, [
-    getItem("Java", "6"),
-    getItem("数据库", "7"),
-    getItem("Docker", "8"),
+    getItem("Java", "/home/article/back/java"),
+    getItem("数据库", "/home/article/back/db"),
+    getItem("Docker", "/home/article/back/docker"),
   ]),
-  getItem("归档", "9", <FileOutlined />),
+  getItem("归档", "/archived", <FileOutlined />),
 ];
 
+
 const HeaderComp: React.FC = (props) => {
-  const outlet = useOutlet();
+  /**
+   * 事实上指定任意一种类型都可以渲染
+   * 因为ItemType类型时他们的组合
+   * export type ItemType = MenuItemType | SubMenuType | MenuItemGroupType | MenuDividerType | null;
+   */
+  const avatarMenuItem: MenuItemType[] | MenuItemType[] | SubMenuType[] | MenuItemGroupType[] | MenuDividerType[] | null = [
+    {
+      //key配置成路径后，方便在MenuProps对象中使用onClick事件统一使用编程式路由
+      key: "/home/user",
+      danger: true,
+      title: "个人中心",
+      icon: <PieChartOutlined />,
+      label: "个人中心",
+      onClick: (data) => {
+        // data.keyPath就是key属性
+        // navigator(`${data.keyPath}`)
+      }
+    },
+    {
+      key: "/home/blog/post", danger: true, title: "发表博客title", icon: <PieChartOutlined />, label: "发表博客"
+    },
+    {
+      key: "/home/user/pwd/modify/userid", danger: true, title: "马青波title", icon: <PieChartOutlined />, label: "修改密码"
+    },
+    {
+      key: "/logout", danger: true, title: "马青波title", icon: <PieChartOutlined />, label: "退出登录"
+    },
+  ]
+  const avatarMenu: MenuProps = {
+    onClick: (data) => {
+      // data.keyPath就是MenuProps.item的key属性，参考avatarMenuItem的第一个栗子，这里是统一做了路由。路由路径为item配置的key
+      navigator(`${data.keyPath}`)
+    },
+    defaultActiveFirst: true,
+    items: avatarMenuItem
+  }
+
+  // const outlet = useOutlet();
   // console.log(outlet);
-  const resolvePath = useResolvedPath("/func/id=21");
+  // const resolvePath = useResolvedPath("/func/id=21");
   // console.log(resolvePath);
   var navigator = useNavigate();
 
@@ -90,7 +122,7 @@ const HeaderComp: React.FC = (props) => {
         <Menu
           theme="dark"
           mode="horizontal"
-          defaultSelectedKeys={["/home/artcle"]}
+          defaultSelectedKeys={["/home/article"]}
           items={items}
           onClick={menuClickHandle}
         />
@@ -109,7 +141,7 @@ const HeaderComp: React.FC = (props) => {
       <Col offset={3} span={2}>
         {isAuth() ? (
           <React.Fragment>
-            <Dropdown menu={{ items }} arrow={true} mouseLeaveDelay={0.5}>
+            <Dropdown menu={avatarMenu} arrow={true} >
               <a onClick={(e) => e.preventDefault()}>
                 <Space>
                   <Avatar
@@ -131,7 +163,7 @@ const HeaderComp: React.FC = (props) => {
           </Button>
         )}
       </Col>
-    </Row>
+    </Row >
   );
 };
 

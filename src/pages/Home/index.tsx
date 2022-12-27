@@ -1,11 +1,16 @@
 import React, { useEffect, useMemo, useState } from "react";
 import {
+  Alert,
   Breadcrumb,
   Button,
+  QRCode,
+  Calendar,
   Col,
   Divider,
+  Empty,
   Image,
   Layout,
+  Rate,
   Row,
   theme,
 } from "antd";
@@ -21,7 +26,6 @@ import { NotificationOutlined } from "@ant-design/icons";
 const { Header, Content, Footer, Sider } = Layout;
 import { Input, Space } from "antd";
 import HeaderComp from "@/components/HeaderComp";
-
 const { Search } = Input;
 
 const Home: React.FC = (props) => {
@@ -29,7 +33,6 @@ const Home: React.FC = (props) => {
     token: { colorBgContainer },
   } = theme.useToken();
   const location = useLocation();
-  console.log("location", location);
 
   return (
     <Layout>
@@ -52,32 +55,27 @@ const Home: React.FC = (props) => {
             style={{ background: colorBgContainer, display: "flex" }}
             width={"10vw"}
           >
-            {/* <AnchorComp /> */}
-            <NotificationOutlined />:<b>公众号:Java精灵</b>
-            <Divider />
-            <Image width={"9vw"} src="/src/assets/images/javaLj.png" />
-            <Divider />
-            <Row gutter={20}>
-              <Col>
-                {" "}
-                <Link to={"artcle"}>
-                  <Button type="primary">文章列表</Button>
-                </Link>
-              </Col>
-              <Col>
-                {" "}
-                <Link to={"user"}>
-                  {" "}
-                  <Button type="primary">用户中心</Button>
-                </Link>
-              </Col>
-            </Row>
+            <div>
+
+              {/* <AnchorComp /> */}
+              <NotificationOutlined />:<b>公众号:Java精灵</b>
+              <Divider />
+              <Image width={"9vw"} src="/src/assets/images/javaLj.png" />
+              <Divider />
+              <Empty />
+              <Divider />
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae culpa ducimus sed corporis laudantium sunt mollitia vero, ab numquam ratione dolores eligendi fugiat alias minima blanditiis in! Distinctio, sapiente dignissimos!
+              <Divider />
+              <QRCode value="https://ant.design/" />
+            </div>
+
           </Sider>
         </Layout>
       </Content>
       <Footer
         className="footer"
         style={{
+          backgroundColor: 'rgb(121,255,0)',
           textAlign: "center",
         }}
       >

@@ -1,7 +1,7 @@
 import Home from "@/pages/Home";
 import { Navigate, RouteObject } from "react-router-dom";
-import Artcle from "@/pages/Home/Artcle";
-import Details from "@/pages/Home/Artcle/Details";
+import Article from "@/pages/Home/Article";
+import Details from "@/pages/Home/Article/Details";
 import React, { lazy } from "react";
 import Login from "@/pages/Login";
 import Profile from "@/pages/Home/User/Profile/index";
@@ -11,7 +11,7 @@ import ModifyPhone from "@/pages/Home/User/AccountSetting/ModifPhone";
 import ModifyEmail from "@/pages/Home/User/AccountSetting/ModifyEmail";
 import ModifyPwd from "@/pages/Home/User/AccountSetting/ModifyPwd";
 import AccountWriteOff from "@/pages/Home/User/AccountSetting/AccountWriteOff";
-import MyArtcleList from "@/pages/Home/User/MyArtcleList";
+import MyArticleList from "@/pages/Home/User/MyArticleList";
 import ShowLoginHistory from "@/pages/Home/User/AccountSetting/ShowLoginHistory";
 import { createBrowserRouter, createHashRouter } from "react-router-dom";
 import User from "@/pages/Home/User";
@@ -54,14 +54,14 @@ const router = createBrowserRouter([
       {
         id: "文章列表",
         index: true,
-        element: <Artcle />,
+        element: <Article />,
       },
       {
-        path: "artcle",
-        element: <Artcle />,
+        path: "article",
+        element: <Article />,
       },
       {
-        path: "artcle:artcleId",
+        path: "article/:articleId",
         element: <Details />,
       },
       {
@@ -76,7 +76,8 @@ const router = createBrowserRouter([
             children: [
               {
                 index: true,
-                element: React.createElement(() => <h1>hello</h1>),
+                element: <></>,
+                // element: React.createElement(() => <h1>hello</h1>)
               },
               {
                 path: "phone/modify/:userId",
@@ -106,8 +107,8 @@ const router = createBrowserRouter([
           },
           //内容管理
           {
-            path: "myArtcleList",
-            element: <MyArtcleList />,
+            path: "myArticleList",
+            element: <MyArticleList />,
           },
           // 个人资料
           {

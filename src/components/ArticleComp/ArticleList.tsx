@@ -103,6 +103,10 @@ const ArtcleList: React.FC = () => {
                     src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
                   />
                 }
+                onClick={() => {
+                  console.log("点击率");
+                }}
+
               >
                 <List.Item.Meta
                   avatar={
@@ -113,7 +117,7 @@ const ArtcleList: React.FC = () => {
                       />
                     </Avatar>
                   }
-                  title={<a href="artcle/2">{`文章《${item.email}》`}</a>}
+                  title={<a href="/home/article/2">{`文章《${item.email}》`}</a>}
                   description={item.email}
                 />
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit.

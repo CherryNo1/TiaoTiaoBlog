@@ -17,19 +17,16 @@ import { Navigate } from "react-router-dom";
 import { service } from "../../utils/request";
 import { ResponseData } from "@/typings";
 import { useEffect } from "react";
+import User from "@/api/User";
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
 
   const onFinish = async (values: any) => {
-    await service({
-      url: "/api/auth/login",
-      data: values,
-      method: "POST",
-    })
+    User.auth(values)
       .then((res: ResponseData) => {
         console.log(res);
-        localStorage.setItem("token", res.data);
+        localStorage.setItem("token", res.data.token);
         navigate("/home", { state: "alien" });
       })
       .catch((res) => {
@@ -86,8 +83,12 @@ const Login: React.FC = () => {
                 <div className="check_code">
                   <Input
                     className="input"
+                    onKeyUpCapture={(e) => {
+                      console.log(e);
+
+                    }}
                     onKeyDown={(e) => {
-                      console.log(e.timeStamp);
+                      console.log(e.code);
                     }}
                   />
                   <Image

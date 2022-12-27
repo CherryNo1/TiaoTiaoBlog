@@ -10,7 +10,9 @@ service.interceptors.request.use(
     const token = localStorage.getItem("token");
     if (token != null) {
       //将token添加到请求头，发送给后端
-      req.headers["token"] = token;
+      if (req && req.headers) { // 多一步判断
+        req.headers["token"] = token;
+      }
       req.headers?.head?.set("token", token);
     } else {
       console.log("token is not fount");
