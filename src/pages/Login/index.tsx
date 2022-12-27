@@ -26,16 +26,17 @@ const Login: React.FC = () => {
       url: "/api/auth/login",
       data: values,
       method: "POST",
-    }).then((res: ResponseData) => {
-      console.log(res);
-      localStorage.setItem("token", res.data);
-      navigate("/home", { state: "alien" });
-    }).catch((res) => {
-      console.log(res);
-      console.log('登陆失败');
-    });
+    })
+      .then((res: ResponseData) => {
+        console.log(res);
+        localStorage.setItem("token", res.data);
+        navigate("/home", { state: "alien" });
+      })
+      .catch((res) => {
+        console.log(res);
+        console.log("登陆失败");
+      });
   };
-
 
   const onFinishFailed = (errorInfo: any) => {
     console.log("校验错误");
@@ -48,13 +49,14 @@ const Login: React.FC = () => {
         <Col span={6} offset={16}>
           <div className="login_form">
             <Form
-              name="basic"
+              name="loginForm"
+              // name="basic"
               labelCol={{ span: 5 }}
               wrapperCol={{ span: 16 }}
               initialValues={{ remember: true }}
               onFinish={onFinish}
               onFinishFailed={onFinishFailed}
-              autoComplete="off"
+              autoComplete="no"
               className="box"
             >
               <Form.Item wrapperCol={{ offset: 1 }}>
@@ -82,7 +84,12 @@ const Login: React.FC = () => {
                 rules={[{ required: true, message: "请输入验证码！" }]}
               >
                 <div className="check_code">
-                  <Input className="input" />
+                  <Input
+                    className="input"
+                    onKeyDown={(e) => {
+                      console.log(e.timeStamp);
+                    }}
+                  />
                   <Image
                     style={{ borderRadius: "5px" }}
                     preview={false}

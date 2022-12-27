@@ -1,11 +1,24 @@
 import React, { lazy, Suspense, useEffect } from "react";
 import { Breadcrumb, Button, ConfigProvider, FloatButton, theme } from "antd";
-import { Outlet, useRoutes, Navigate, useNavigate, RouterProvider, createBrowserRouter, useOutlet } from "react-router-dom";
+import {
+  Outlet,
+  useRoutes,
+  Navigate,
+  useNavigate,
+  RouterProvider,
+  createBrowserRouter,
+  useOutlet,
+} from "react-router-dom";
 import { CustomerServiceOutlined, CommentOutlined } from "@ant-design/icons";
-import routers from './router/index';
+import routers from "./router/index";
 
 const App: React.FC = () => {
-
+  // useEffect(() => {
+  //   console.log("first");
+  //   return () => {
+  //     console.log("second");
+  //   };
+  // }, []);
   return (
     <React.Fragment>
       <ConfigProvider
@@ -39,7 +52,10 @@ const App: React.FC = () => {
         </FloatButton.Group>
       </ConfigProvider>
       {/* {router} */}
-      <RouterProvider router={routers} fallbackElement={<>error</>}></RouterProvider>
+      <RouterProvider
+        router={routers}
+        fallbackElement={<>error</>}
+      ></RouterProvider>
     </React.Fragment>
   );
 };
