@@ -31,6 +31,10 @@ import "./index.module.scss";
 
 import base64 from "js-base64";
 const phone = base64.decode("7784854978686949778481517810610361");
+//原生js
+decodeURIComponent(
+  escape(window.atob("5oiR5piv5LiA5q616ZyA6KaB5aSE55CG55qE5a2X56ym"))
+);
 console.log(phone);
 
 const Home: React.FC = (props) => {
