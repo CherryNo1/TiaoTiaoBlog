@@ -9,7 +9,7 @@ import { MenuItem } from "@/typings";
  * @param children 子菜单
  *
  */
-function getItem(
+export function getItem(
   label: React.ReactNode,
   key: React.Key,
   icon?: React.ReactNode,
@@ -18,43 +18,64 @@ function getItem(
   return { key, label, icon, children } as MenuItem;
 }
 /**
- * 脱敏处理
- * import Utils from '@/utils/utils'
- * const columns = [
-	{
-	  title: '患者姓名',
-	  dataIndex: 'name',
-	  key: 'name',
-	  render:(val)=><span>{Utils.onlySeeSome(val,'name')}</span>
-    },
-    {
-      title: '手机号',
-      dataIndex: 'mobile',
-      key: 'mobile',
-      render:(val)=><span>{Utils.onlySeeSome(val,'phone')}</span>
-    },
-]
-//html中
-<span>{Utils.onlySeeSome(order.name,'name')}</span>
-
- * @param str
- * @param type
- * @returns
+ * setCookie
+ *
+ * @export
+ * @param {string} name
+ * @param {string} value
+ * @param {number} [expiredays=365]
  */
-function onlySeeSome(str, type) {
-  //str文本-type类型：name/姓名；phone/手机号
-  let arr = JSON.parse(localStorage.getItem("user"))?.roleList;
-  let isAdmin = arr?.find((item) => item.roleKey == "administrator"); //权限数组是否有最高权限
+export function setCookie(name: string, value: string, expiredays = 365) {
+  const exdate = new Date()
+  exdate.setDate(exdate.getDate() + expiredays)
+  document.cookie = `${name}=${escape(value)};expires=${exdate.toUTCString()}`
+}
 
-  if (isAdmin || !str) {
-    return str;
-  } else {
-    //脱敏
-    if (type == "name") {
-      return new Array(str?.length).join("*") + str?.substr(-1);
-    } else if (type == "phone") {
-      return str?.replace(/(\d{3})\d*(\d{4})/, "$1****$2");
+/**
+* getCookie
+*
+* @export
+* @param {string} name
+* @returns
+*/
+export function getCookie(name: string) {
+  if (document.cookie.length > 0) {
+    let cStart = document.cookie.indexOf(name + '=')
+    if (cStart !== -1) {
+      cStart = cStart + name.length + 1
+      let cEnd = document.cookie.indexOf(';', cStart)
+      if (cEnd === -1) {
+        cEnd = document.cookie.length
+      }
+      return unescape(document.cookie.substring(cStart, cEnd))
     }
   }
+  return ''
 }
-export { getItem };
+
+/**
+* clearCookie
+*
+* @export
+* @param {string} name
+*/
+export function clearCookie(name: string) {
+  setCookie(name, '')
+}
+
+/**
+* 从url获取参数
+*
+* @export
+* @param {string} name
+* @returns {string}
+*/
+export function queryURL(name: string): string {
+  const reg = new RegExp(`(^|&)${name}=([^&]*)(&|$)`, 'i')
+  const result = window.location.search.substr(1).match(reg)
+  if (result !== null) {
+    return decodeURI(result[2])
+  }
+  return ''
+}
+

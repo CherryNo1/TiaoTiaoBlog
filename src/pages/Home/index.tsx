@@ -27,15 +27,16 @@ const { Header, Content, Footer, Sider } = Layout;
 import { Input, Space } from "antd";
 import HeaderComp from "@/components/HeaderComp";
 import BreadcrumbComp from "./components/BreadcrumbComp";
-import "./index.module.scss";
+import style from "./index.module.scss";
+// import { decode, encode } from "js-base64";
+import SiderComp from "./components/SiderComp";
+// const phone = decode("bWFxaTUxNDc2OG5nYm8xNTU0MQ==");
 
-import base64 from "js-base64";
-const phone = base64.decode("7784854978686949778481517810610361");
 //原生js
-decodeURIComponent(
-  escape(window.atob("5oiR5piv5LiA5q616ZyA6KaB5aSE55CG55qE5a2X56ym"))
-);
-console.log(phone);
+// decodeURIComponent(
+//   escape(window.atob("5oiR5piv5LiA5q616ZyA6KaB5aSE55CG55qE5a2X56ym"))
+// );
+
 
 const Home: React.FC = (props) => {
   const {
@@ -46,9 +47,8 @@ const Home: React.FC = (props) => {
       <Header>
         <HeaderComp />
       </Header>
-      <Content
-        style={{ padding: "0 15vw", minHeight: "calc(100vh - 64px - 64px)" }}
-      >
+      <Content className={style.content}>
+        {/*  style={{ padding: "0 15vw", minHeight: "calc(100vh - 64px - 64px)" }} */}
         <div className="breadcrumb" style={{ margin: "16px 0" }}>
           <BreadcrumbComp />
         </div>
@@ -60,28 +60,14 @@ const Home: React.FC = (props) => {
             style={{ background: colorBgContainer, display: "flex" }}
             width={"10vw"}
           >
-            <div>
-              {/* <AnchorComp /> */}
-              <NotificationOutlined />:<b>公众号:Java精灵</b>
-              <Divider />
-              <Image width={"9vw"} src="/src/assets/images/javaLj.png" />
-              <Divider />
-              <Empty />
-              <Divider />
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae
-              culpa ducimus sed corporis laudantium sunt mollitia vero, ab
-              numquam ratione dolores eligendi fugiat alias minima blanditiis
-              in! Distinctio, sapiente dignissimos!
-              <Divider />
-              <QRCode value="https://ant.design/" />
-            </div>
+            <SiderComp />
           </Sider>
         </Layout>
       </Content>
       <Footer
         className="footer"
         style={{
-          backgroundColor: "rgb(121,255,0)",
+          backgroundColor: "rgb(121,115,0)",
           textAlign: "center",
         }}
       >

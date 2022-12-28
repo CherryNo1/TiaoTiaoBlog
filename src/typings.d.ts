@@ -1,5 +1,4 @@
 import { MenuProps } from "antd";
-
 type ResponseData = {
   status?: number;
   message?: string;
@@ -379,7 +378,7 @@ type SiderItemsDataType = {
       | "spin"
       | "twoToneColor"
     > &
-      React.RefAttributes<HTMLSpanElement>
+    React.RefAttributes<HTMLSpanElement>
   >;
 };
 

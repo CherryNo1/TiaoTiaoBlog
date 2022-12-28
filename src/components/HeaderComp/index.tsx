@@ -88,40 +88,40 @@ const HeaderComp: React.FC = (props) => {
     | MenuItemGroupType[]
     | MenuDividerType[]
     | null = [
-    {
-      //key配置成路径后，方便在MenuProps对象中使用onClick事件统一使用编程式路由
-      key: "/home/user",
-      danger: true,
-      title: "个人中心",
-      icon: <PieChartOutlined />,
-      label: "个人中心",
-      onClick: (data) => {
-        // data.keyPath就是key属性
-        // navigator(`${data.keyPath}`)
+      {
+        //key配置成路径后，方便在MenuProps对象中使用onClick事件统一使用编程式路由
+        key: "/home/user",
+        danger: true,
+        title: "个人中心",
+        icon: <PieChartOutlined />,
+        label: "个人中心",
+        onClick: (data) => {
+          // data.keyPath就是key属性
+          // navigator(`${data.keyPath}`)
+        },
       },
-    },
-    {
-      key: "/home/blog/post",
-      danger: true,
-      title: "发表博客title",
-      icon: <PieChartOutlined />,
-      label: "发表博客",
-    },
-    {
-      key: "/home/user/pwd/modify/userid",
-      danger: true,
-      title: "马青波title",
-      icon: <PieChartOutlined />,
-      label: "修改密码",
-    },
-    {
-      key: "/logout",
-      danger: true,
-      title: "退出登录",
-      icon: <PieChartOutlined />,
-      label: "退出登录",
-    },
-  ];
+      {
+        key: "/home/blog/post",
+        danger: true,
+        title: "发表博客title",
+        icon: <PieChartOutlined />,
+        label: "发表博客",
+      },
+      {
+        key: "/home/user/pwd/modify/userid",
+        danger: true,
+        title: "马青波title",
+        icon: <PieChartOutlined />,
+        label: "修改密码",
+      },
+      {
+        key: "/logout",
+        danger: true,
+        title: "退出登录",
+        icon: <PieChartOutlined />,
+        label: "退出登录",
+      },
+    ];
   const avatarMenu: MenuProps = {
     onClick: (data) => {
       // data.keyPath就是MenuProps.item的key属性，参考avatarMenuItem的第一个栗子，这里是统一做了路由。路由路径为item配置的key
