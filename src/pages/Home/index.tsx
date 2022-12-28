@@ -28,6 +28,11 @@ import { Input, Space } from "antd";
 import HeaderComp from "@/components/HeaderComp";
 import BreadcrumbComp from "./components/BreadcrumbComp";
 import "./index.module.scss";
+
+import base64 from "js-base64";
+const phone = base64.decode("7784854978686949778481517810610361");
+console.log(phone);
+
 const Home: React.FC = (props) => {
   const {
     token: { colorBgContainer },
