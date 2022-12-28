@@ -4,7 +4,7 @@ import App from './App'
 import './index.scss'
 import 'antd/dist/reset.css';
 import { BrowserRouter } from 'react-router-dom';
-import BaseRouter from './router/index';
+// import BaseRouter from './router/index';
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(

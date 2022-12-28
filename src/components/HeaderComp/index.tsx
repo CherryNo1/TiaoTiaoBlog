@@ -14,6 +14,7 @@ import {
   Row,
   theme,
   MenuProps,
+  Popover,
 } from "antd";
 import Logo from "../../Icons/Logo";
 import {
@@ -24,6 +25,7 @@ import {
   useOutlet,
   useResolvedPath,
   resolvePath,
+  NavLink,
 } from "react-router-dom";
 import {
   BarChartOutlined,
@@ -34,12 +36,20 @@ import {
   UserOutlined,
   RiseOutlined,
   DownOutlined,
+  AntDesignOutlined,
+  CodepenOutlined,
 } from "@ant-design/icons";
 
 import { Input, Space } from "antd";
 import isAuth from "@/pages/Auth/index";
 import { MenuItem } from "@/typings";
-import { ItemType, MenuItemType, SubMenuType, MenuItemGroupType, MenuDividerType } from "antd/es/menu/hooks/useItems";
+import {
+  ItemType,
+  MenuItemType,
+  SubMenuType,
+  MenuItemGroupType,
+  MenuDividerType,
+} from "antd/es/menu/hooks/useItems";
 import { getItem } from "@/utils/commonUtils";
 
 const { Search } = Input;
@@ -64,14 +74,19 @@ const items: MenuItem[] = [
   getItem("归档", "/archived", <FileOutlined />),
 ];
 
-
 const HeaderComp: React.FC = (props) => {
   /**
    * 事实上指定任意一种类型都可以渲染
    * 因为ItemType类型时他们的组合
    * export type ItemType = MenuItemType | SubMenuType | MenuItemGroupType | MenuDividerType | null;
    */
-  const avatarMenuItem: MenuItemType[] | MenuItemType[] | SubMenuType[] | MenuItemGroupType[] | MenuDividerType[] | null = [
+  const avatarMenuItem:
+    | MenuItemType[]
+    | MenuItemType[]
+    | SubMenuType[]
+    | MenuItemGroupType[]
+    | MenuDividerType[]
+    | null = [
     {
       //key配置成路径后，方便在MenuProps对象中使用onClick事件统一使用编程式路由
       key: "/home/user",
@@ -82,26 +97,38 @@ const HeaderComp: React.FC = (props) => {
       onClick: (data) => {
         // data.keyPath就是key属性
         // navigator(`${data.keyPath}`)
-      }
+      },
     },
     {
-      key: "/home/blog/post", danger: true, title: "发表博客title", icon: <PieChartOutlined />, label: "发表博客"
+      key: "/home/blog/post",
+      danger: true,
+      title: "发表博客title",
+      icon: <PieChartOutlined />,
+      label: "发表博客",
     },
     {
-      key: "/home/user/pwd/modify/userid", danger: true, title: "马青波title", icon: <PieChartOutlined />, label: "修改密码"
+      key: "/home/user/pwd/modify/userid",
+      danger: true,
+      title: "马青波title",
+      icon: <PieChartOutlined />,
+      label: "修改密码",
     },
     {
-      key: "/logout", danger: true, title: "马青波title", icon: <PieChartOutlined />, label: "退出登录"
+      key: "/logout",
+      danger: true,
+      title: "退出登录",
+      icon: <PieChartOutlined />,
+      label: "退出登录",
     },
-  ]
+  ];
   const avatarMenu: MenuProps = {
     onClick: (data) => {
       // data.keyPath就是MenuProps.item的key属性，参考avatarMenuItem的第一个栗子，这里是统一做了路由。路由路径为item配置的key
-      navigator(`${data.keyPath}`)
+      navigator(`${data.keyPath}`);
     },
     defaultActiveFirst: true,
-    items: avatarMenuItem
-  }
+    items: avatarMenuItem,
+  };
 
   // const outlet = useOutlet();
   // console.log(outlet);
@@ -113,10 +140,81 @@ const HeaderComp: React.FC = (props) => {
     navigator(`${menu?.key}`, { replace: true });
     console.log(`点击了导航栏并跳转到${menu?.key}`);
   };
+  const loginTips = () => (
+    <div className="loginTips">
+      <div className="login-guide-list">
+        <Row gutter={20}>
+          <Col span={12}>
+            <Space>
+              <AntDesignOutlined />
+              <span>免费试学课程</span>
+            </Space>
+          </Col>
+          <Col span={12}>
+            <Space>
+              <CodepenOutlined />
+              <span>收藏有用文章</span>
+            </Space>
+          </Col>
+        </Row>
+        <Row gutter={20}>
+          <Col span={12}>
+            <Space>
+              <AntDesignOutlined />
+              <span>查阅浏览足迹</span>
+            </Space>
+          </Col>
+          <Col span={12}>
+            <Space>
+              <CodepenOutlined />
+              <span>订阅优质专栏</span>
+            </Space>
+          </Col>
+        </Row>
+        <Row gutter={20}>
+          <Col span={12}>
+            <Space>
+              <AntDesignOutlined />
+              <span>体验签到抽奖</span>
+            </Space>
+          </Col>
+          <Col span={12}>
+            <Space>
+              <CodepenOutlined />
+              <span>提升成长等级</span>
+            </Space>
+          </Col>
+        </Row>
+      </div>
+
+      <div style={{ margin: "10px" }}>
+        <Button
+          type="primary"
+          onClick={() => {
+            navigator("/login");
+          }}
+          style={{ width: "-webkit-fill-available" }}
+        >
+          立即登录
+        </Button>
+      </div>
+      <div style={{ textAlign: "center" }}>
+        首次使用？<NavLink to={"#"}>点我注册</NavLink>
+      </div>
+    </div>
+  );
   return (
     <Row>
       <Col span={3}>
-        <Logo />
+        <div
+          className="logo"
+          style={{ margin: "10px" }}
+          onClick={() => {
+            navigator("/home");
+          }}
+        >
+          <Logo />
+        </div>
       </Col>
       <Col span={12}>
         <Menu
@@ -141,7 +239,7 @@ const HeaderComp: React.FC = (props) => {
       <Col offset={3} span={2}>
         {isAuth() ? (
           <React.Fragment>
-            <Dropdown menu={avatarMenu} arrow={true} >
+            <Dropdown menu={avatarMenu} arrow={true}>
               <a onClick={(e) => e.preventDefault()}>
                 <Space>
                   <Avatar
@@ -153,17 +251,23 @@ const HeaderComp: React.FC = (props) => {
             </Dropdown>
           </React.Fragment>
         ) : (
-          <Button
-            size="large"
-            onClick={() => {
-              navigator("/login");
-            }}
+          <Popover
+            content={loginTips}
+            placement="bottom"
+            title="登录跳跳后可立即获得以下权益："
           >
-            登录/注册
-          </Button>
+            <Button
+              size="large"
+              onClick={() => {
+                navigator("/login");
+              }}
+            >
+              登录/注册
+            </Button>
+          </Popover>
         )}
       </Col>
-    </Row >
+    </Row>
   );
 };
 

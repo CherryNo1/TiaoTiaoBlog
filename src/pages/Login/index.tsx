@@ -85,7 +85,6 @@ const Login: React.FC = () => {
                     className="input"
                     onKeyUpCapture={(e) => {
                       console.log(e);
-
                     }}
                     onKeyDown={(e) => {
                       console.log(e.code);

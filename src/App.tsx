@@ -10,7 +10,7 @@ import {
   useOutlet,
 } from "react-router-dom";
 import { CustomerServiceOutlined, CommentOutlined } from "@ant-design/icons";
-import routers from "./router/index";
+import { router } from "./router/index";
 
 const App: React.FC = () => {
   // useEffect(() => {
@@ -53,7 +53,7 @@ const App: React.FC = () => {
       </ConfigProvider>
       {/* {router} */}
       <RouterProvider
-        router={routers}
+        router={router}
         fallbackElement={<>error</>}
       ></RouterProvider>
     </React.Fragment>

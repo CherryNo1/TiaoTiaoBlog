@@ -22,8 +22,7 @@ import ReduxTest from "@/pages/Test/ReduxTest/ReduxTest";
 const lazyRouter = (
   jsxCom: JSX.Element // 路由懒加载
 ) => <React.Suspense fallback={<h1>加载中</h1>}>{jsxCom}</React.Suspense>;
-
-const router = createBrowserRouter([
+const routes: RouteObject[] = [
   // test start
   {
     path: "/cAll",
@@ -52,7 +51,6 @@ const router = createBrowserRouter([
     element: <Home />,
     children: [
       {
-        id: "文章列表",
         index: true,
         element: <Article />,
       },
@@ -61,7 +59,7 @@ const router = createBrowserRouter([
         element: <Article />,
       },
       {
-        path: "article/:articleId",
+        path: "article/details/:articleId",
         element: <Details />,
       },
       {
@@ -131,6 +129,8 @@ const router = createBrowserRouter([
     path: "/*",
     element: <NotFount />,
   },
-]);
+];
 
-export default router;
+const router = createBrowserRouter(routes);
+//router放到App.tsx,routers是作为createBrowserRouter的参数
+export { router, routes };
