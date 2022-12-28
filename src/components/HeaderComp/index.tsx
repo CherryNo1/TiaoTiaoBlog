@@ -15,6 +15,7 @@ import {
   theme,
   MenuProps,
   Popover,
+  Badge,
 } from "antd";
 import Logo from "../../Icons/Logo";
 import {
@@ -203,6 +204,52 @@ const HeaderComp: React.FC = (props) => {
       </div>
     </div>
   );
+  const notificationAvatarMenu: MenuProps = {
+    onClick: (data) => {
+      // data.keyPath就是MenuProps.item的key属性，参考avatarMenuItem的第一个栗子，这里是统一做了路由。路由路径为item配置的key
+    },
+    defaultActiveFirst: true,
+    items: [
+      {
+        //key配置成路径后，方便在MenuProps对象中使用onClick事件统一使用编程式路由
+        key: "/home/notification/comment",
+        title: "评论title",
+        icon: <PieChartOutlined />,
+        label: "评论",
+        onClick: (data) => {
+          // data.keyPath就是key属性
+          navigator(`${data.keyPath}`);
+        },
+        onMouseEnter: () => {
+          console.log(222);
+        },
+      },
+      {
+        key: "/home//notification/",
+        title: "点赞title",
+        icon: <PieChartOutlined />,
+        label: "点赞",
+      },
+      {
+        key: "/home/user/pwd/modify/userid",
+        title: "关注title",
+        icon: <PieChartOutlined />,
+        label: "关注",
+      },
+      {
+        key: "/logout",
+        title: "私信title",
+        icon: <PieChartOutlined />,
+        label: "私信",
+      },
+      {
+        key: "/systemMsg",
+        title: "系统消息title",
+        icon: <PieChartOutlined />,
+        label: "系统消息",
+      },
+    ],
+  };
   return (
     <Row>
       <Col span={3}>
@@ -239,16 +286,27 @@ const HeaderComp: React.FC = (props) => {
       <Col offset={3} span={2}>
         {isAuth() ? (
           <React.Fragment>
-            <Dropdown menu={avatarMenu} arrow={true}>
-              <a onClick={(e) => e.preventDefault()}>
-                <Space>
+            <Space size={"large"}>
+              <Badge count={999}>
+                <Dropdown
+                  menu={notificationAvatarMenu}
+                  arrow={true}
+                  placement={"bottomRight"}
+                >
+                  <Link to="#">
+                    <Avatar icon={<NotificationOutlined />} size="large" />
+                  </Link>
+                </Dropdown>
+              </Badge>
+              <Dropdown menu={avatarMenu} arrow={true}>
+                <a onClick={(e) => e.preventDefault()}>
                   <Avatar
                     src="https://ts1.cn.mm.bing.net/th/id/R-C.8672512c922151b7d4f7cde3f763cb3f?rik=Jm6vIGG8XWGfwA&riu=http%3a%2f%2fhimg2.huanqiu.com%2fattachment2010%2f2018%2f1214%2f20181214031141628.jpg&ehk=4z2Ge8CMPLIj%2bAuz1H5X7h4brWDqyU4sIZjfUKQqQgM%3d&risl=&pid=ImgRaw&r=0"
                     size="large"
                   />
-                </Space>
-              </a>
-            </Dropdown>
+                </a>
+              </Dropdown>
+            </Space>
           </React.Fragment>
         ) : (
           <Popover

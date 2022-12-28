@@ -1,15 +1,14 @@
 import { useParams } from "react-router-dom";
-import ReactMarkdown from 'react-markdown'
+import ReactMarkdown from "react-markdown";
 import React from "react";
 const { Header, Content, Footer, Sider } = Layout;
 import { Anchor, Col, Image, Layout, Menu, Row, theme } from "antd";
-import AnchorComp from "../../../../components/AnchorComp";
 // import ReactMarkdown from "react-markdown";
-import ReactMarkdownReader from '../../../../components/MarkdownComp/Reader';
+import ReactMarkdownReader from "../../../../components/MarkdownComp/Reader";
 import Writer from "../../../../components/MarkdownComp/Writer";
-import MarkdownNavbar from 'markdown-navbar';
+import MarkdownNavbar from "markdown-navbar";
 // The default style of markdown-navbar should be imported additionally
-import 'markdown-navbar/dist/navbar.css';
+import "markdown-navbar/dist/navbar.css";
 const markdown = `
 # 一号标题
 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo voluptatem nobis dolorum, aliquam, iure, officiis cumque provident id nisi beatae eius consequuntur ad fuga facere ut? Quos expedita soluta velit reprehenderit quisquam, sapiente suscipit est ab blanditiis voluptatum magni itaque recusandae fugit ut, tempora aliquam fuga! Laboriosam voluptas, eligendi molestias incidunt quisquam aperiam soluta dolor placeat quaerat eos ex hic nemo ab, cum debitis consequuntur corporis eveniet modi. Commodi ea animi, iure tenetur, ex totam quae nesciunt, pariatur quam nemo laborum? Dolorum deleniti necessitatibus officia. Libero voluptatibus veritatis qui labore quia eveniet, facilis sed sint placeat omnis sequi laborum non!
@@ -218,16 +217,24 @@ Lorem, ipsum dolor sit amet consectetur adipisicing elit. Incidunt repudiandae i
 
 `;
 
-
 const Details: React.FC = () => {
   // const params = useParams();
   // console.log(params.artcleId);
   return (
     <Layout>
-      <Sider theme="light" >
-        <Anchor>
+      <Sider theme="light">
+        <Anchor
+          items={[
+            {
+              title: React.cloneElement(
+                <MarkdownNavbar source={markdown} ordered={false} />
+              ),
+              key: 2,
+              href: "#",
+            },
+          ]}
+        >
           {/* https://github.com/parksben/markdown-navbar */}
-          <MarkdownNavbar source={markdown} ordered={false} />
         </Anchor>
       </Sider>
       <Layout>
