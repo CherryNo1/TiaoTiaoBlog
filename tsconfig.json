@@ -1,0 +1,45 @@
+{
+  //tsconfig配置文件说明 https://zhuanlan.zhihu.com/p/570939192
+  "compilerOptions": {
+    "removeComments":true, // 删除注释
+    "diagnostics": true, // 打印诊断信息 
+    "target":"ES6",//指定编译的目标版本
+    "declaration" : true, //是否给每个编译出来的 JS 生成对应的 d.ts 类型声明文件。
+    "declarationDir": "./types",//编译出来的 JS 生成对应的 d.ts 类型声明文件存放的目录。不提供的话，默认和生成的 js 文件放在一起。
+    "lib": [
+      "dom",
+      "dom.iterable",
+      // "ESNext"
+      "ES6"
+    ],//这个属性来设置需要引入的全局类型声明。
+    "allowJs": true,//允许ts文件中引入或使用js
+    "skipLibCheck": true,//跳过依赖检查
+    "esModuleInterop": true,//是否通过为所有导入模块创建命名空间对象，允许CommonJS和ES模块之间的互操作性，开启改选项时，也自动开启allowSyntheticDefaultImports选项，默认：false。
+    "allowSyntheticDefaultImports": true,//是否允许从没有默认导出的模块中默认导入，默认：false
+    "strict": true,
+    "alwaysStrict":false,// alwaysStrict：是否以严格模式解析，并为每个源文件发出"use strict"，默认：false。
+    "forceConsistentCasingInFileNames": false, //是否区分文件系统大小写规则，默认：false。
+    "noFallthroughCasesInSwitch": true,//检查switch中是否含有case没有使用break跳出，默认：false。
+    "module":"ES6", //指定编译后代码使用的模块化规范。ESNext,CommonJS,Node16 ...... 等等
+    "moduleResolution": "node",//指定模块解析策略，node或classic
+    "resolveJsonModule": true, //是否解析 JSON 模块，默认：false。
+    "isolatedModules": true,//是否将每个文件转换为单独的模块，默认：false。
+    "noEmit": true, //不生成编译后的文件，默认：false。
+    "jsx":"preserve" ,  //preserve，react和react-native,"react-jsx","react-jsxdev"
+    "baseUrl": "./",//用于设置基础 url，可以帮我们省掉一些多余的路径前缀。
+    "paths": {
+      "@/*":[
+          "src/*"
+      ],
+      "~/*":[
+        "./*"
+      ]
+    }
+  },
+  "include": [
+    // "src",
+    "src/**/*",
+    "./**/*.ts"
+  ],
+  "exclude": ["node_modules/**/*"]
+}
