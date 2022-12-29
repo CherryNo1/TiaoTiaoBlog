@@ -32,11 +32,15 @@ import style from "./index.module.scss";
 import SiderComp from "./components/SiderComp";
 // const phone = decode("bWFxaTUxNDc2OG5nYm8xNTU0MQ==");
 
-//原生js
-// decodeURIComponent(
-//   escape(window.atob("5oiR5piv5LiA5q616ZyA6KaB5aSE55CG55qE5a2X56ym"))
-// );
-
+import base64 from "js-base64";
+const phone = base64.decode("7784854978686949778481517810610361");
+//原生js加密
+window.btoa(unescape(encodeURIComponent("我是一段需要处理的字符")));
+//原生js解密
+decodeURIComponent(
+  escape(window.atob("5oiR5piv5LiA5q616ZyA6KaB5aSE55CG55qE5a2X56ym"))
+);
+console.log(phone);
 
 const Home: React.FC = (props) => {
   const {
