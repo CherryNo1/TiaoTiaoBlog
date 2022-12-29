@@ -8,11 +8,24 @@
     }
     
 }
-.breadcrumb{
-    margin: "16px 0" 
-}
+
 // height: calc(100vh - #{$number});
 .content{
     padding: 0 15vw; 
-    min-height: calc(100vh - 64px - 64px)
+    min-height: calc(100vh - 64px - 64px);
+    .breadcrumb{
+        margin: 16px 0px 
+    };
+    .rightSider{
+        background: colorBgContainer;
+        display: flex;
+    };
+    .centerContent{
+        padding: 0px 40px
+    }
+   
+}
+.footer{
+    background: rgb(121,115,0) !important;
+    text-align: center;
 }

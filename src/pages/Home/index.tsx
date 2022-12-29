@@ -52,31 +52,23 @@ const Home: React.FC = (props) => {
         <HeaderComp />
       </Header>
       <Content className={style.content}>
-        {/*  style={{ padding: "0 15vw", minHeight: "calc(100vh - 64px - 64px)" }} */}
-        <div className="breadcrumb" style={{ margin: "16px 0" }}>
+        <div className={style.breadcrumb}>
           <BreadcrumbComp />
         </div>
         <Layout style={{ padding: "24px 0", background: colorBgContainer }}>
-          <Content style={{ padding: "0 40px" }}>
+          <Content className={style.centerContent}>
             <Outlet />
           </Content>
           <Sider
-            style={{ background: colorBgContainer, display: "flex" }}
+            className={style.rightSider}
             width={"10vw"}
+            style={{ background: colorBgContainer, display: "flex" }}
           >
             <SiderComp />
           </Sider>
         </Layout>
       </Content>
-      <Footer
-        className="footer"
-        style={{
-          backgroundColor: "rgb(121,115,0)",
-          textAlign: "center",
-        }}
-      >
-        跳跳是只猫
-      </Footer>
+      <Footer className={style.footer}>跳跳是只猫</Footer>
     </Layout>
   );
 };

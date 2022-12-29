@@ -4,6 +4,16 @@ import * as path from 'path'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  // 全局样式
+  css: {
+    preprocessorOptions: {
+      scss: {
+        // 两种方式都可以,并且不需要再main.js引入。会爆重复引入错误
+        additionalData: '@import "@/assets/style/global.scss";'
+        // additionalData: '@use "@/assets/style/global.scss";'
+      }
+    }
+  },
   server: {
     port: 8080,
     proxy: {

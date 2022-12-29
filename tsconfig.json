@@ -25,7 +25,7 @@
     "resolveJsonModule": true, //是否解析 JSON 模块，默认：false。
     "isolatedModules": true,//是否将每个文件转换为单独的模块，默认：false。
     "noEmit": true, //不生成编译后的文件，默认：false。
-    "jsx":"preserve" ,  //preserve，react和react-native,"react-jsx","react-jsxdev"
+    "jsx":"react-jsx" ,  //preserve，react和react-native,"react-jsx","react-jsxdev"
     "baseUrl": "./",//用于设置基础 url，可以帮我们省掉一些多余的路径前缀。
     "paths": {
       "@/*":[
