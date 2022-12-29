@@ -4,3 +4,5 @@ declare module "*.scss";
  * 尝试使用 `npm i --save-dev @types/markdown-navbar` (如果存在)，或者添加一个包含 `declare module 'markdown-navbar';` 的新声明(.d.ts)文件ts(7016)
  */
 declare module "markdown-navbar";
+
+declare module "react-avatar-editor";

@@ -1,3 +1,41 @@
+.alipay{
+    display: flex;
+    justify-content : center;
+    align-items: center;
+    flex-direction:column;
+    height: 40;
+    width: 40;
+    border: 1px solid #D4D8DD;
+    border-radius: 50%;
+}
+.taobao{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 40;
+    width: 40;
+    border: 1px solid #D4D8DD;
+    border-radius: 50%;
+}
+.weibo{
+    display: 'flex';
+    justify-content: 'center';
+    align-items: 'center';
+    flex-direction: 'column';
+    height: 40;
+    width: 40;
+    border: '1px solid #D4D8DD';
+    border-radius: '50%';
+}
+.actionss{
+    display: 'flex' !important;
+    justify-content: 'center' !important;
+    align-items: 'center' !important;
+    flex-direction: 'column' !important;
+}
+
+//过时了
 $bgColor: rgba(184, 186, 224, 0.637);
 .login_box{
     // height: calc(100vh);

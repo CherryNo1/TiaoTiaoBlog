@@ -12,6 +12,7 @@ import {
   Layout,
   Rate,
   Row,
+  FloatButton,
   theme,
 } from "antd";
 import {
@@ -33,6 +34,7 @@ import SiderComp from "./components/SiderComp";
 // const phone = decode("bWFxaTUxNDc2OG5nYm8xNTU0MQ==");
 
 import { decode } from "js-base64";
+import { useToken } from "@ant-design/pro-components";
 const phone = decode("7784854978686949778481517810610361");
 //原生js加密
 window.btoa(unescape(encodeURIComponent("我是一段需要处理的字符")));
@@ -40,29 +42,27 @@ window.btoa(unescape(encodeURIComponent("我是一段需要处理的字符")));
 decodeURIComponent(
   escape(window.atob("5oiR5piv5LiA5q616ZyA6KaB5aSE55CG55qE5a2X56ym"))
 );
-console.log(phone);
 
 const Home: React.FC = (props) => {
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken();
+  const { token } = useToken()
+
   return (
     <Layout>
-      <Header>
+      <Header className={style.header}>
         <HeaderComp />
       </Header>
       <Content className={style.content}>
         <div className={style.breadcrumb}>
           <BreadcrumbComp />
         </div>
-        <Layout style={{ padding: "24px 0", background: colorBgContainer }}>
+        <Layout style={{ padding: "24px 0", background: token.colorBgContainer }}>
           <Content className={style.centerContent}>
             <Outlet />
           </Content>
           <Sider
             className={style.rightSider}
             width={"10vw"}
-            style={{ background: colorBgContainer, display: "flex" }}
+            style={{ background: token.colorBgContainer, display: "flex" }}
           >
             <SiderComp />
           </Sider>

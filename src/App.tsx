@@ -1,31 +1,26 @@
-import React, { lazy, Suspense, useEffect } from "react";
+import React, { lazy, useState, useEffect } from "react";
 import { Breadcrumb, Button, ConfigProvider, FloatButton, theme } from "antd";
 import {
   Outlet,
-  useRoutes,
-  Navigate,
-  useNavigate,
   RouterProvider,
-  createBrowserRouter,
-  useOutlet,
 } from "react-router-dom";
 import { CustomerServiceOutlined, CommentOutlined } from "@ant-design/icons";
 import { router } from "./router/index";
 
 const App: React.FC = () => {
+
   // useEffect(() => {
-  //   console.log("first");
-  //   return () => {
-  //     console.log("second");
-  //   };
-  // }, []);
+  //   console.log(openFloatButton);
+  // }, [openFloatButton]);
   return (
     <React.Fragment>
       <ConfigProvider
         theme={{
+          // algorithm: theme.darkAlgorithm,
+          // algorithm: theme.compactAlgorithm,
           token: {
-            colorBgContainer: "#fffff",
-            colorPrimary: "#1677FF",
+            colorBgContainer: "#fff",
+            colorPrimary: "linear-gradient(141deg,#009e6c 0,#00d1b2 71%,#00e7eb 100%)",
           },
           components: {
             Radio: {
@@ -35,27 +30,29 @@ const App: React.FC = () => {
               colorPrimary: "#9E339F",
             },
             Button: {
-              borderRadius: 20,
+              colorBgContainer: 'linear-gradient(141deg,#009e6c 0,#00d1b2 71%,#00e7eb 100%)',
+              borderRadius: 220,
             },
           },
-          // algorithm: theme.darkAlgorithm,
-          // algorithm: theme.defaultAlgorithm,
+
         }}
       >
         <FloatButton.Group
           icon={<CustomerServiceOutlined />}
           type="primary"
-          trigger="click"
+          trigger="hover"
+          tooltip={<><Button>shape</Button></>}
         >
-          <FloatButton />
-          <FloatButton icon={<CommentOutlined />} />
+          <FloatButton icon={<CommentOutlined />} onClick={() => { alert('别反馈，没人管') }} />
+          <FloatButton onClick={() => { alert('这个也一样，没人管') }} />
         </FloatButton.Group>
       </ConfigProvider>
       {/* {router} */}
       <RouterProvider
         router={router}
-        fallbackElement={<>error</>}
+        fallbackElement={<h1>error</h1>}
       ></RouterProvider>
+
     </React.Fragment>
   );
 };

@@ -5,7 +5,7 @@ import { Skeleton } from 'antd';
 import { Avatar } from 'antd';
 import { useEffect } from 'react';
 import { useState } from 'react';
-
+import style from './index.module.scss'
 interface DataType {
     gender?: string;
     name: {
@@ -23,7 +23,7 @@ interface DataType {
     loading: boolean;
 }
 
-const count = 3;
+const count = 15
 const fakeDataUrl = `https://randomuser.me/api/?results=${count}&inc=name,gender,email,nat,picture&noinfo`;
 
 export default function MyArticleList() {
@@ -63,15 +63,8 @@ export default function MyArticleList() {
 
     const loadMore =
         !initLoading && !loading ? (
-            <div
-                style={{
-                    textAlign: 'center',
-                    marginTop: 12,
-                    height: 32,
-                    lineHeight: '32px',
-                }}
-            >
-                <Button onClick={onLoadMore}>loading more</Button>
+            <div className={style.more}>
+                <Button onClick={onLoadMore}>加载更多</Button>
             </div>
         ) : null;
     return (

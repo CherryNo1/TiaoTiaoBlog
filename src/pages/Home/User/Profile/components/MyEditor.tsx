@@ -36,7 +36,7 @@ const MyEditor = () => {
   return (
     <Fragment>
       <AvatarEditor
-        image="https://rs-channel.huanqiucdn.cn/imageDir/ac55d6828e4bef43db2f7e1ea7b20ebcu51.jpg"
+        image="https://tse3-mm.cn.bing.net/th/id/OIP-C.DDEXTcytRzNoYIuqYSk7ZAHaE-?pid=ImgDet&rs=1"
         width={250}
         height={250}
         border={50}

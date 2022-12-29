@@ -1,6 +1,6 @@
 import React from "react";
-import ProfileForm from "./ProfileFrom";
-import MyEditor from "./MyEditor";
+import ProfileForm from "./components/ProfileFrom";
+import MyEditor from "./components/MyEditor";
 
 export default function Profile() {
   return (

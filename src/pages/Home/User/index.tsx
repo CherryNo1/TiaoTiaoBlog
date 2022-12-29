@@ -7,7 +7,7 @@ import {
 import { Layout, Menu, theme } from "antd";
 import { SiderItemsDataType } from "@/pages/Home/menuItem";
 import { Outlet, useNavigate } from "react-router-dom";
-
+import style from './index.module.scss'
 const { Header, Content, Footer, Sider } = Layout;
 const siderItemsData: SiderItemsDataType[] = [
   { label: "账号设置", path: "accountSetting", icon: UserOutlined },
@@ -27,7 +27,7 @@ const User: React.FC = () => {
   };
   return (
     <Layout>
-      <Sider style={{ background: "#fff" }}>
+      <Sider className={style.sider}>
         <Menu
           mode="inline"
           defaultSelectedKeys={["accountSetting"]}
@@ -35,7 +35,7 @@ const User: React.FC = () => {
           onClick={siderMenuchange}
         />
       </Sider>
-      <Content style={{ margin: "24px 16px" }}>
+      <Content className={style.centent} >
         <Outlet />
       </Content>
     </Layout>
