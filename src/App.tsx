@@ -3,11 +3,15 @@ import { Breadcrumb, Button, ConfigProvider, FloatButton, theme } from "antd";
 import { Outlet, RouterProvider } from "react-router-dom";
 import { CustomerServiceOutlined, CommentOutlined } from "@ant-design/icons";
 import { router } from "./router/index";
+import { useToken } from "@ant-design/pro-components";
+import Modal from "antd/es/modal/Modal";
 
 const App: React.FC = () => {
   // useEffect(() => {
   //   console.log(openFloatButton);
   // }, [openFloatButton]);
+  const { token } = useToken()
+
   return (
     <React.Fragment>
       <ConfigProvider
@@ -15,9 +19,7 @@ const App: React.FC = () => {
           // algorithm: theme.darkAlgorithm,
           // algorithm: theme.compactAlgorithm,
           token: {
-            colorBgContainer: "#fff",
-            colorPrimary:
-              "linear-gradient(141deg,#009e6c 0,#00d1b2 71%,#00e7eb 100%)",
+            colorBgContainer: "#00b96b",
           },
           components: {
             Radio: {
@@ -27,9 +29,9 @@ const App: React.FC = () => {
               colorPrimary: "#9E339F",
             },
             Button: {
-              colorBgContainer:
-                "linear-gradient(141deg,#009e6c 0,#00d1b2 71%,#00e7eb 100%)",
-              borderRadius: 220,
+              colorPrimary: "#00d1b2 ",
+              // "linear-gradient(141deg,#009e6c 0,#00d1b2 71%,#00e7eb 100%)",
+              borderRadius: 20,
             },
           },
         }}

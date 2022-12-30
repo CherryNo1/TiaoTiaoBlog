@@ -35,6 +35,7 @@ import SiderComp from "./components/SiderComp";
 
 import { decode } from "js-base64";
 import { useToken } from "@ant-design/pro-components";
+import Details from "./Article/Details";
 const phone = decode("7784854978686949778481517810610361");
 //原生js加密
 window.btoa(unescape(encodeURIComponent("我是一段需要处理的字符")));
@@ -44,32 +45,37 @@ decodeURIComponent(
 );
 
 const Home: React.FC = (props) => {
-  const { token } = useToken()
 
+  const { token } = useToken()
+  const location = useLocation()
   return (
-    <Layout>
-      <Header className={style.header}>
-        <HeaderComp />
-      </Header>
-      <Content className={style.content}>
-        <div className={style.breadcrumb}>
-          <BreadcrumbComp />
-        </div>
-        <Layout style={{ padding: "24px 0", background: token.colorBgContainer }}>
-          <Content className={style.centerContent}>
-            <Outlet />
-          </Content>
-          <Sider
-            className={style.rightSider}
-            width={"10vw"}
-            style={{ background: token.colorBgContainer, display: "flex" }}
-          >
-            <SiderComp />
-          </Sider>
-        </Layout>
-      </Content>
-      <Footer className={style.footer}>跳跳是只猫</Footer>
-    </Layout>
+    <Details />
+
+    // <Layout>
+    //   <Header className={style.header}>
+    //     <HeaderComp />
+    //   </Header>
+    //   <Content className={style.content}>
+    //     <div className={style.breadcrumb}>
+    //       <BreadcrumbComp />
+    //     </div>
+
+    //     <Layout style={{ padding: "24px 0", background: token.colorBgContainer }}>
+    //       <Content className={style.centerContent}>
+    //         <Outlet />
+
+    //       </Content>
+    //       <Sider
+    //         className={style.rightSider}
+    //         width={"10vw"}
+    //         style={{ background: token.colorBgContainer, display: "flex" }}
+    //       >
+    //         <SiderComp />
+    //       </Sider>
+    //     </Layout>
+    //   </Content>
+    //   <Footer className={style.footer}>跳跳是只猫</Footer>
+    // </Layout>
   );
 };
 

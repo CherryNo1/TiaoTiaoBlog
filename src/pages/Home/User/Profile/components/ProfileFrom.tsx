@@ -71,6 +71,9 @@ const ProfileForm = () => {
           <Button htmlType="submit" type="primary" style={{ width: "20vw" }}>
             修改
           </Button>
+          <Button type="primary" >
+            我要发布
+          </Button>
         </Form.Item>
       </Form>
     </Fragment>

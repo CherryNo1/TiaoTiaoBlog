@@ -17,9 +17,9 @@ import type { CSSProperties } from 'react';
 import { useState } from 'react';
 import style from './index.scss'
 import Logo from '@/Icons/Logo';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { ResponseData } from '@/typings';
-import User from '@/api/User';
+import { User } from '@/api/index'
 type LoginType = 'phone' | 'account';
 
 const iconStyles: CSSProperties = {

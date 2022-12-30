@@ -4,7 +4,7 @@ import { Button, Tag } from "antd";
 import axios from "axios";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-
+import { useToken } from "@ant-design/pro-components";
 const IconText = ({ icon, text }: { icon: any; text: string }) => (
   <span>
     {React.createElement(icon, { style: { marginInlineEnd: 8 } })}
@@ -66,14 +66,14 @@ export default () => {
       }}
       toolBarRender={() => {
         return [
-          <Button key="3" type="primary">
-            新建
+          <Button key="3" type="primary" style={{ "backgroundColor": " linear-gradient(141deg,#009e6c 0,#00d1b2 71%,#00e7eb 100%) !import" }}>
+            我要发布
           </Button>,
         ];
       }}
       itemLayout="vertical"
       rowKey="id"
-      headerTitle=<h1>竖排样式</h1>
+      headerTitle={<h1>竖排样式</h1>}
       dataSource={dataSource}
       tooltip={"ssssssssssss"}
       metas={{

@@ -1,6 +1,7 @@
-import React from 'react'
+import { useEffect } from 'react'
 
 /**
+ * 组件挂载后
  * componentDidMount in hook way
  *
  * @export
@@ -8,14 +9,16 @@ import React from 'react'
  * @returns
  */
 export function useOnMount(onMount: () => any) {
-    return React.useEffect(() => {
+    return useEffect(() => {
         if (onMount) {
+            //
             onMount()
         }
-    }, [])
+    })
 }
 
 /**
+ * 组件卸载后前
  * componentWillUnmount in hook way
  *
  * @export
@@ -23,7 +26,20 @@ export function useOnMount(onMount: () => any) {
  * @returns
  */
 export function useOnUnmount(onUnmount: () => any) {
-    return React.useEffect(() => {
+    return useEffect(() => {
         return () => onUnmount && onUnmount()
     }, [])
+}
+/**
+ * 组件更新前
+ * componentDidUpdate in hook way
+ *
+ * @export
+ * @param {() => any} onUpdate
+ * @returns
+ */
+export function useOnUpdate(onUpdate: () => any) {
+    return useEffect(() => {
+        return () => onUpdate && onUpdate()
+    })
 }

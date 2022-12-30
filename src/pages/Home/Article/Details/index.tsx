@@ -1,8 +1,7 @@
 import { useParams } from "react-router-dom";
-import ReactMarkdown from "react-markdown";
 import React from "react";
 const { Header, Content, Footer, Sider } = Layout;
-import { Anchor, Col, Image, Layout, Menu, Row, theme } from "antd";
+import { Anchor, Col, Divider, Image, Layout, Menu, Row, theme } from "antd";
 import WangEditorComp from "@/components/MarkdownComp/WangEditComp";
 
 const markdown = `
@@ -218,33 +217,9 @@ const Details: React.FC = () => {
   // console.log(params.artcleId);
   return (
     <Layout>
-      <Sider theme="light">
-        <Anchor items={[]}></Anchor>
-      </Sider>
-      <Layout>
-        <Content style={{ margin: "24px 16px 0" }}>
-          <div
-            style={{
-              padding: 24,
-              minHeight: "80vh",
-            }}
-          >
-            <Row
-              style={{
-                justifyContent: "center",
-                fontSize: "36px",
-              }}
-            >
-              文章标题
-            </Row>
-            <Row>
-              <Col>发布时间</Col>
-            </Row>
-          </div>
-          <hr />
-          <WangEditorComp />
-        </Content>
-      </Layout>
+      <Content style={{ margin: "1vw 5vw" }}>
+        <WangEditorComp />
+      </Content>
     </Layout>
   );
 };
