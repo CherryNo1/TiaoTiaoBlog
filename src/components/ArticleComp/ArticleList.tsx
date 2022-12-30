@@ -1,137 +1,132 @@
-import React, { useState, useEffect } from "react";
 import { LikeOutlined, MessageOutlined, StarOutlined } from "@ant-design/icons";
-import { Avatar, Button, Divider, List, Skeleton, Space } from "antd";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { Outlet } from "react-router-dom";
-interface DataType {
-  gender?: string;
-  name: {
-    title?: string;
-    first?: string;
-    last?: string;
-  };
-  email?: string;
-  picture: {
-    large?: string;
-    medium?: string;
-    thumbnail?: string;
-  };
-  nat?: string;
-  loading: boolean;
-}
+import { ProList } from "@ant-design/pro-components";
+import { Button, Tag } from "antd";
+import axios from "axios";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
-const IconText = ({ icon, text }: { icon: React.FC; text: string }) => (
-  <Space>
-    {React.createElement(icon)}
+const IconText = ({ icon, text }: { icon: any; text: string }) => (
+  <span>
+    {React.createElement(icon, { style: { marginInlineEnd: 8 } })}
     {text}
-  </Space>
+  </span>
 );
 
-const ArtcleList: React.FC = () => {
-  const [initLoading, setInitLoading] = useState(true);
-  const [loading, setLoading] = useState(false);
-  const [data, setData] = useState<DataType[]>([]);
-  const [list, setList] = useState<DataType[]>([]);
-  const pullMoreData = () => {
-    if (loading) {
-      return;
-    }
-    setLoading(true);
-    fetch(
-      "https://randomuser.me/api/?results=10&inc=name,gender,email,nat,picture&noinfo"
-    )
-      .then((res) => res.json())
-      .then((body) => {
-        setData([...data, ...body.results]);
-        setLoading(false);
-      })
-      .catch(() => {
-        setLoading(false);
-      });
-  };
+const dataSource = [
+  {
+    title: "语雀的天空",
+  },
+  {
+    title: "Ant Design",
+  },
+  {
+    title: "蚂蚁金服体验科技",
+  },
+  {
+    title: "TechUI",
+  },
+  {
+    title: "Ant Design",
+  },
+  {
+    title: "蚂蚁金服体验科技",
+  },
+  {
+    title: "TechUI",
+  },
+  {
+    title: "Ant Design",
+  },
+  {
+    title: "蚂蚁金服体验科技",
+  },
+  {
+    title: "TechUI",
+  },
+  {
+    title: "Ant Design",
+  },
+  {
+    title: "蚂蚁金服体验科技",
+  },
+  {
+    title: "TechUI",
+  },
+];
 
-  useEffect(() => {
-    pullMoreData();
-  }, []);
-
+export default () => {
+  const navigate = useNavigate();
   return (
-    <React.Fragment>
-      <div
-        id="scrollableDiv"
-        style={{
-          height: "calc(90vh - 64px - 64px)",
-          overflow: "auto",
-          padding: "0 16px",
-        }}
-      >
-        <InfiniteScroll
-          dataLength={data.length}
-          next={pullMoreData}
-          hasMore={data.length < 50}
-          loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}
-          endMessage={<Divider plain>老妹儿,哥真的一滴都没了 🤐</Divider>}
-          scrollableTarget="scrollableDiv"
-        >
-          <List
-            itemLayout="vertical"
-            size="large"
-            dataSource={data}
-            renderItem={(item, index) => (
-              <List.Item
-                key={`${index}`}
-                actions={[
-                  <IconText
-                    icon={StarOutlined}
-                    text="156"
-                    key="list-vertical-star-o"
-                  />,
-                  <IconText
-                    icon={LikeOutlined}
-                    text="156"
-                    key="list-vertical-like-o"
-                  />,
-                  <IconText
-                    icon={MessageOutlined}
-                    text="2"
-                    key="list-vertical-message"
-                  />,
-                ]}
-                extra={
-                  <img
-                    width={272}
-                    alt="logo"
-                    src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
-                  />
-                }
-                onClick={() => {
-                  console.log("点击率");
-                }}
-              >
-                <List.Item.Meta
-                  avatar={
-                    <Avatar src={`#`}>
-                      <img
-                        width={32}
-                        src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
-                      />
-                    </Avatar>
-                  }
-                  title={
-                    <a href="/home/article/details/2">{`文章《${item.email}》`}</a>
-                  }
-                  description={item.email}
-                />
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Dolorem, earum quo mollitia consequuntur dignissimos similique
-                nemo distinctio, blanditiis vero saepe iusto ipsa! Sed, maiores
-                ratione! Est ab doloribus error inventore.
-              </List.Item>
-            )}
-          />
-        </InfiniteScroll>
-      </div>
-    </React.Fragment>
+    <ProList<{ title: string }>
+      cardProps={{
+        //当点击卡片时触发
+        onClick: (data) => {
+          navigate("/home/article/details/2");
+        },
+      }}
+      toolBarRender={() => {
+        return [
+          <Button key="3" type="primary">
+            新建
+          </Button>,
+        ];
+      }}
+      itemLayout="vertical"
+      rowKey="id"
+      headerTitle=<h1>竖排样式</h1>
+      dataSource={dataSource}
+      tooltip={"ssssssssssss"}
+      metas={{
+        title: {},
+        description: {
+          render: () => (
+            <>
+              <Tag>语雀专栏</Tag>
+              <Tag>设计语言</Tag>
+              <Tag>蚂蚁金服</Tag>
+            </>
+          ),
+        },
+        actions: {
+          render: () => [
+            <IconText
+              icon={StarOutlined}
+              text="156"
+              key="list-vertical-star-o"
+            />,
+            <IconText
+              icon={LikeOutlined}
+              text="156"
+              key="list-vertical-like-o"
+            />,
+            <IconText
+              icon={MessageOutlined}
+              text="2"
+              key="list-vertical-message"
+            />,
+          ],
+        },
+        extra: {
+          render: () => (
+            <img
+              width={272}
+              alt="logo"
+              src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+            />
+          ),
+        },
+        content: {
+          render: () => {
+            return (
+              <div>
+                段落示意：蚂蚁金服设计平台
+                design.alipay.com，用最小的工作量，无缝接入蚂蚁金服生态，提供跨越设计与开发的体验解决方案。蚂蚁金服设计平台
+                design.alipay.com，用最小的工作量，无缝接入蚂蚁金服生态提供跨越设计与开发的体验解决方案。
+              </div>
+            );
+          },
+        },
+      }}
+    />
   );
 };
-
-export default ArtcleList;

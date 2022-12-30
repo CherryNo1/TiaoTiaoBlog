@@ -6,25 +6,26 @@ export const service = axios.create({
 // 请求拦截器
 service.interceptors.request.use(
   // onFulfilled
-  req => {
+  (req) => {
     const token = localStorage.getItem("token");
     if (token != null) {
       //将token添加到请求头，发送给后端
-      if (req && req.headers) { // 多一步判断
+      if (req && req.headers) {
+        // 多一步判断
         req.headers["token"] = token;
       }
       req.headers?.head?.set("token", token);
     } else {
       console.log("token is not fount");
       // 如果不是登录页，那么就强制回到登录页。否则不动
-      if (window.location.pathname != '/login') {
+      if (window.location.pathname != "/login") {
         window.location.href = "/login";
       }
     }
     return req;
   },
   // onRejected
-  error => {
+  (error) => {
     console.log(error); // for debug
     return Promise.reject(error);
   }
@@ -32,7 +33,6 @@ service.interceptors.request.use(
 
 service.interceptors.response.use(
   (res) => {
-    console.log(res);
     return res.data;
   },
   (error) => {

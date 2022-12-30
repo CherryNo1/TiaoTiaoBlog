@@ -3,12 +3,8 @@ import ReactMarkdown from "react-markdown";
 import React from "react";
 const { Header, Content, Footer, Sider } = Layout;
 import { Anchor, Col, Image, Layout, Menu, Row, theme } from "antd";
-// import ReactMarkdown from "react-markdown";
-import ReactMarkdownReader from "../../../../components/MarkdownComp/Reader";
-import Writer from "../../../../components/MarkdownComp/Writer";
-import MarkdownNavbar from "markdown-navbar";
-// The default style of markdown-navbar should be imported additionally
-import "markdown-navbar/dist/navbar.css";
+import WangEditorComp from "@/components/MarkdownComp/WangEditComp";
+
 const markdown = `
 # 一号标题
 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo voluptatem nobis dolorum, aliquam, iure, officiis cumque provident id nisi beatae eius consequuntur ad fuga facere ut? Quos expedita soluta velit reprehenderit quisquam, sapiente suscipit est ab blanditiis voluptatum magni itaque recusandae fugit ut, tempora aliquam fuga! Laboriosam voluptas, eligendi molestias incidunt quisquam aperiam soluta dolor placeat quaerat eos ex hic nemo ab, cum debitis consequuntur corporis eveniet modi. Commodi ea animi, iure tenetur, ex totam quae nesciunt, pariatur quam nemo laborum? Dolorum deleniti necessitatibus officia. Libero voluptatibus veritatis qui labore quia eveniet, facilis sed sint placeat omnis sequi laborum non!
@@ -223,19 +219,7 @@ const Details: React.FC = () => {
   return (
     <Layout>
       <Sider theme="light">
-        <Anchor
-          items={[
-            {
-              title: React.cloneElement(
-                <MarkdownNavbar source={markdown} ordered={false} />
-              ),
-              key: 2,
-              href: "#",
-            },
-          ]}
-        >
-          {/* https://github.com/parksben/markdown-navbar */}
-        </Anchor>
+        <Anchor items={[]}></Anchor>
       </Sider>
       <Layout>
         <Content style={{ margin: "24px 16px 0" }}>
@@ -256,10 +240,9 @@ const Details: React.FC = () => {
             <Row>
               <Col>发布时间</Col>
             </Row>
-            <ReactMarkdownReader>{markdown}</ReactMarkdownReader>
           </div>
           <hr />
-          <Writer />
+          <WangEditorComp />
         </Content>
       </Layout>
     </Layout>
