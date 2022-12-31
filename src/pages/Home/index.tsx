@@ -36,6 +36,8 @@ import SiderComp from "./components/SiderComp";
 import { decode } from "js-base64";
 import { useToken } from "@ant-design/pro-components";
 import Details from "./Article/Details";
+import { ArticleApi } from "@/api";
+import Editorer from "./Editor";
 const phone = decode("7784854978686949778481517810610361");
 //原生js加密
 window.btoa(unescape(encodeURIComponent("我是一段需要处理的字符")));
@@ -48,34 +50,37 @@ const Home: React.FC = (props) => {
 
   const { token } = useToken()
   const location = useLocation()
+  const layout = <Layout>
+    <Header className={style.header}>
+      <HeaderComp />
+    </Header>
+    <Content className={style.content}>
+      <div className={style.breadcrumb}>
+        <BreadcrumbComp />
+      </div>
+      <Layout style={{ padding: "24px 0", background: token.colorBgContainer }}>
+        <Content className={style.centerContent}>
+          <Outlet />
+        </Content>
+        <Sider
+          className={style.rightSider}
+          width={"10vw"}
+          style={{ background: token.colorBgContainer, display: "flex" }}
+        >
+          <SiderComp />
+        </Sider>
+      </Layout>
+    </Content>
+    <Footer className={style.footer}>跳跳是只猫</Footer>
+  </Layout>
   return (
-    <Details />
-
-    // <Layout>
-    //   <Header className={style.header}>
-    //     <HeaderComp />
-    //   </Header>
-    //   <Content className={style.content}>
-    //     <div className={style.breadcrumb}>
-    //       <BreadcrumbComp />
-    //     </div>
-
-    //     <Layout style={{ padding: "24px 0", background: token.colorBgContainer }}>
-    //       <Content className={style.centerContent}>
-    //         <Outlet />
-
-    //       </Content>
-    //       <Sider
-    //         className={style.rightSider}
-    //         width={"10vw"}
-    //         style={{ background: token.colorBgContainer, display: "flex" }}
-    //       >
-    //         <SiderComp />
-    //       </Sider>
-    //     </Layout>
-    //   </Content>
-    //   <Footer className={style.footer}>跳跳是只猫</Footer>
-    // </Layout>
+    <React.Fragment>
+      {
+        // 如果路径中含有details，就显示发表文章的页面，否则就是文章列表的页面。后期需要改
+        //改成当路径为文章编辑页面时，就显示  <Details /> 组件，否则显示Layout组件
+        location.pathname.match('editor') ? <Editorer /> : layout
+      }
+    </React.Fragment>
   );
 };
 

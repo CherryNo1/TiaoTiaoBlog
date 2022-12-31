@@ -1,4 +1,4 @@
-import Article from './Article'
+import ArticleApi from './ArticleApi'
 import User from './User'
 export const isLogin = () => {
     if (localStorage.getItem('token')) {
@@ -7,4 +7,4 @@ export const isLogin = () => {
     console.log("校验登录失败");
     return false;
 }
-export { Article, User }
+export { ArticleApi, User }

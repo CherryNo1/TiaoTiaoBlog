@@ -1,8 +1,11 @@
 import { useParams } from "react-router-dom";
-import React from "react";
+import React, { useState } from "react";
 const { Header, Content, Footer, Sider } = Layout;
 import { Anchor, Col, Divider, Image, Layout, Menu, Row, theme } from "antd";
 import WangEditorComp from "@/components/MarkdownComp/WangEditComp";
+import utils from "@/utils";
+import { ArticleApi } from "@/api";
+import { Editor } from "@wangeditor/editor-for-react";
 
 const markdown = `
 # 一号标题
@@ -212,16 +215,25 @@ Lorem, ipsum dolor sit amet consectetur adipisicing elit. Incidunt repudiandae i
 
 `;
 
-const Details: React.FC = () => {
-  // const params = useParams();
-  // console.log(params.artcleId);
-  return (
-    <Layout>
-      <Content style={{ margin: "1vw 5vw" }}>
-        <WangEditorComp />
-      </Content>
-    </Layout>
-  );
+const Details: React.FC<any> = () => {
+    // const params = useParams();
+    // console.log(params.artcleId);
+    var [article, setArticle] = useState<string>('')
+    utils.hooksUtils.useOnMount(() => {
+        ArticleApi.getArticle().then((res) => {
+            setArticle(res.data.context)
+        })
+    })
+    return (
+        <Layout>
+            <Content style={{ margin: "1vw 5vw" }}>
+                <Editor
+                    defaultConfig={{ readOnly: true }}
+                    value={article}
+                />
+            </Content>
+        </Layout>
+    );
 };
 
 export default Details;

@@ -101,7 +101,7 @@ const HeaderComp: React.FC = (props) => {
         },
       },
       {
-        key: "/home/blog/post",
+        key: "/home/editor",
         danger: true,
         title: "发表博客title",
         icon: <PieChartOutlined />,

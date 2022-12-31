@@ -20,6 +20,7 @@ import FuncComponent from "@/pages/Test/FuncComponent";
 import ClassComponent from "@/pages/Test/ClassComponent";
 import ReduxTest from "@/pages/Test/ReduxTest/ReduxTest";
 import Error from "@/pages/Error/4xx";
+import Editor from "@/pages/Home/Editor";
 const lazyRouter = (
   jsxCom: JSX.Element // 路由懒加载
 ) => <React.Suspense fallback={<h1>加载中</h1>}>{jsxCom}</React.Suspense>;
@@ -115,6 +116,11 @@ const routes: RouteObject[] = [
             element: <Profile />,
           },
         ],
+      },
+      //文章编辑
+      {
+        path: 'editor',
+        element: <Editor />
       },
     ],
   },

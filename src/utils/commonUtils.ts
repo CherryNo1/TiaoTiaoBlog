@@ -1,16 +1,5 @@
 import { MenuItem } from "@/typings";
 /**
- * 将html内容显示到指定id的div
- * @param id 需要渲染到的div的id
- * @param html 需要渲染的内容，必须是wangEdit生成的html
- */
-export function editorShow(id: string, html: string) {
-  const domv = document.getElementById(id)
-  if (domv != null) {
-    domv.innerHTML = html
-  }
-}
-/**
  *
  * 菜单Item类型
  * @param label 菜单名字
