@@ -38,6 +38,7 @@ import { useToken } from "@ant-design/pro-components";
 import Details from "./Article/Details";
 import { ArticleApi } from "@/api";
 import Editorer from "./Editor";
+import AMapContainer from "@/components/AMapContainer";
 const phone = decode("7784854978686949778481517810610361");
 //原生js加密
 window.btoa(unescape(encodeURIComponent("我是一段需要处理的字符")));
@@ -71,7 +72,12 @@ const Home: React.FC = (props) => {
         </Sider>
       </Layout>
     </Content>
-    <Footer className={style.footer}>跳跳是只猫</Footer>
+    <Footer className={style.footer}>
+    </Footer>
+    <AMapContainer />
+    <Footer className={style.footer}>
+      <div>跳跳是只猫</div>
+    </Footer>
   </Layout>
   return (
     <React.Fragment>

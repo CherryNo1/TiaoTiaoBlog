@@ -20,27 +20,29 @@ function WangEditorComp() {
 
   // 模拟componentDidMount 异步设置 html
   useEffect(() => {
-    Article.getArticle().then((res) => {
-      setHtml(res.data.context);
-      const domv = document.getElementById("editor-show")
-      if (domv != null) {
-        domv.innerHTML = html
-      }
-    })
+    // Article.getArticle().then((res) => {
+    //   setHtml(res.data.context);
+    //   //组件挂载后渲染文章列表
+    //   const domv = document.getElementById("editor-show")
+    //   if (domv != null) {
+    //     domv.innerHTML = html
+    //   }
+    // })
   }, []);
 
 
   //didUpdate 当编辑器的代码改变时，重新渲染页面
   useEffect(() => {
     if (editor != null) {
-      console.log(editor.getHtml());
+      // console.log(editor.getHtml());
       setHtml(editor?.getHtml());
-    }
+    } //组件更新后渲染文章列表
     const domv = document.getElementById("editor-show")
     if (domv != null) {
       domv.innerHTML = html
     }
   })
+
   // 及时销毁 editor ，重要！
   useEffect(() => {
     return () => {
@@ -61,29 +63,40 @@ function WangEditorComp() {
     placeholder: "请输入内容...",
     scroll: false,
     MENU_CONF: {
-
     },
   };
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+  const [articleTitle, setArticleTitle] = useState('');
 
   return (
     <React.Fragment>
+      {articleTitle}
       <Layout className="layout">
-        <Header style={{ "width": "100%" }}>
+        <Header style={{ "width": "100%", background: colorBgContainer }}>
           <div className="title">
-            <Row>
+            <Row gutter={20}>
+              <Col span={2} style={{ textAlign: "center", fontSize: "36px" }}>
+                <span>文章标题:</span>
+              </Col>
+              <Col span={20}>
+                <Input
+                  onBlur={(title) => {
+                    //文章标题
+                    setArticleTitle(title.target.value)
+                  }}
+                  allowClear
+                  showCount={true}
+                  maxLength={60}
+                  onPressEnter={() => {
+                    console.log("PressEnter");
+                  }}
+                  style={{ borderStyle: "none none solid", borderRadius: "20px" }}
+                />
+              </Col>
               <Col span={2}>
-                文章标题:
-              </Col>
-              <Col span={14}>
-                <Form.Item>
-                  <Input />
-                </Form.Item>
-              </Col>
-              <Col span={8}>
-                <Button type="primary">发布文章</Button>
+                <Button type="primary" size="large">发布文章</Button>
               </Col>
             </Row>
           </div>

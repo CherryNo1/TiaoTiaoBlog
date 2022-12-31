@@ -216,8 +216,8 @@ Lorem, ipsum dolor sit amet consectetur adipisicing elit. Incidunt repudiandae i
 `;
 
 const Details: React.FC<any> = () => {
-    // const params = useParams();
-    // console.log(params.artcleId);
+    const params = useParams();
+    console.log(params.articleId);
     var [article, setArticle] = useState<string>('')
     utils.hooksUtils.useOnMount(() => {
         ArticleApi.getArticle().then((res) => {

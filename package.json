@@ -20,6 +20,7 @@
   ],
   "dependencies": {
     "@ant-design/pro-components": "^2.3.47",
+    "@uiw/react-amap": "^4.3.1",
     "@wangeditor/editor": "^5.1.23",
     "@wangeditor/editor-for-react": "^1.0.6",
     "ahooks": "^3.7.4",

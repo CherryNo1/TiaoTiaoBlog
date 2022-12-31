@@ -25,7 +25,9 @@
     }
 }
 .footer {
+    height: auto;
     background: rgb(121,115,0) !important;
     text-align: center !important;
-    background-image: $background-image !important;
+    // background-image: $background-image !important;
+    background-image: $background-image-second !important;
 }

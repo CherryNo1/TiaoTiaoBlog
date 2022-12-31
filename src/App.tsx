@@ -4,7 +4,6 @@ import { Outlet, RouterProvider } from "react-router-dom";
 import { CustomerServiceOutlined, CommentOutlined } from "@ant-design/icons";
 import { router } from "./router/index";
 import { useToken } from "@ant-design/pro-components";
-import Modal from "antd/es/modal/Modal";
 
 const App: React.FC = () => {
   // useEffect(() => {
