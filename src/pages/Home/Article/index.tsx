@@ -6,7 +6,7 @@ const Artcle: React.FC = () => {
   const location = useLocation();
   // console.log(location);
   const params = useParams();
-  console.log(params);
+  // console.log(params);
   return (
     <React.Fragment>
       {params.articleId == null && <ArtcleList />}

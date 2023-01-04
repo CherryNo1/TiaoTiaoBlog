@@ -52,6 +52,7 @@ import {
   MenuDividerType,
 } from "antd/es/menu/hooks/useItems";
 import { getItem } from "@/utils/commonUtils";
+import { User } from "@/api";
 
 const { Search } = Input;
 //菜单类型
@@ -76,6 +77,8 @@ const items: MenuItem[] = [
 ];
 
 const HeaderComp: React.FC = (props) => {
+  var navigator = useNavigate();
+
   /**
    * 事实上指定任意一种类型都可以渲染
    * 因为ItemType类型时他们的组合
@@ -122,10 +125,19 @@ const HeaderComp: React.FC = (props) => {
         label: "退出登录",
       },
     ];
+
   const avatarMenu: MenuProps = {
     onClick: (data) => {
       // data.keyPath就是MenuProps.item的key属性，参考avatarMenuItem的第一个栗子，这里是统一做了路由。路由路径为item配置的key
-      navigator(`${data.keyPath}`);
+      if (data.key == '/logout') {
+        User.logout()
+          .then(() => {
+            navigator(`/login`);
+            localStorage.removeItem('Authorization');
+          })
+      } else {
+        navigator(`${data.keyPath}`);
+      }
     },
     defaultActiveFirst: true,
     items: avatarMenuItem,
@@ -135,7 +147,6 @@ const HeaderComp: React.FC = (props) => {
   // console.log(outlet);
   // const resolvePath = useResolvedPath("/func/id=21");
   // console.log(resolvePath);
-  var navigator = useNavigate();
 
   const menuClickHandle = (menu: MenuItem) => {
     navigator(`${menu?.key}`, { replace: true });

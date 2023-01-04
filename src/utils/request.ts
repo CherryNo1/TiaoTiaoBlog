@@ -7,16 +7,21 @@ export const service = axios.create({
 service.interceptors.request.use(
   // onFulfilled
   (req) => {
-    const token = localStorage.getItem("token");
-    if (token != null) {
-      //将token添加到请求头，发送给后端
+    const Authorization = localStorage.getItem("Authorization");
+    if (Authorization != null) {
+      //将Authorization添加到请求头，发送给后端
       if (req && req.headers) {
         // 多一步判断
-        req.headers["token"] = token;
+        req.headers["Authorization"] = Authorization;
       }
-      req.headers?.head?.set("token", token);
+      req.headers?.head?.set("Authorization", Authorization);
     } else {
-      console.log("token is not fount");
+
+      //登陆页面不要输出 Authorization is not fount
+      if ("/api/oauth/login" != req.url) {
+        console.log("Authorization is not fount");
+      }
+
       // 如果不是登录页，那么就强制回到登录页。否则不动
       if (window.location.pathname != "/login") {
         window.location.href = "/login";
@@ -36,7 +41,6 @@ service.interceptors.response.use(
     return res.data;
   },
   (error) => {
-    console.log(error);
     let message = "";
     if (error && error.response) {
       switch (error || error.response.status) {

@@ -1,10 +1,14 @@
 import { service } from '@/utils/request';
 
-const PREFIX = "/api/mocks"
+const PREFIX = "/api"
 class User {
-    public static auth(data: any) {
+    public static login(data: any) {
 
-        return service.post(`${PREFIX}/auth/login.json`, data)
+        return service.post(`${PREFIX}/oauth/login`, data)
+    }
+    public static logout(data?: any) {
+
+        return service.post(`${PREFIX}/oauth/logout`, data)
     }
 }
 export default User

@@ -20,13 +20,13 @@ export default defineConfig({
       // 接口地址代理
       '/api': {
 
-        target: 'http://localhost:8080', // MOCK
-        rewrite: path => path.replace(/^\/api/, '')
+        // target: 'http://localhost:8080', // MOCK
+        // rewrite: path => path.replace(/^\/api/, '')
 
         // target: 'https://mock.presstime.cn/mock/639f3b8a7ffe39009ae6bb33', // 接口的域名
 
-        // target: 'http://127.0.0.1:8010', // 接口的域名
-        // rewrite: path => path.replace(/^\/api/, '')
+        target: 'http://127.0.0.1:58000', // 接口的域名
+        rewrite: path => path.replace(/^\/api/, '')
       },
     },
     host: '0.0.0.0',

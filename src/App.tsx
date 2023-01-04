@@ -1,69 +1,34 @@
-import React, { lazy, useState, useEffect } from "react";
+import React, { lazy, useEffect } from "react";
 import { Breadcrumb, Button, ConfigProvider, FloatButton, theme } from "antd";
-import { Outlet, RouterProvider } from "react-router-dom";
+import {
+  Outlet, useLocation, useNavigate, useRoutes,
+} from "react-router-dom";
 import { CustomerServiceOutlined, CommentOutlined } from "@ant-design/icons";
-import { router } from "./router/index";
-import { useToken } from "@ant-design/pro-components";
-
+import { routes } from "./router";
+import isAuth from "./pages/Auth";
 const App: React.FC = () => {
-  // useEffect(() => {
-  //   console.log(openFloatButton);
-  // }, [openFloatButton]);
-  const { token } = useToken()
+  const router = useRoutes(routes)
+  const location = useLocation()
+  const navigate = useNavigate()
+  /**
+   * 路由守卫，当token不存在时，就会重定位到login页面
+   */
+  useEffect(() => {
+    // console.log('路由改变了，当前路由为，{}', location.pathname);
+    if (!isAuth()) {
+      navigate("/login")
+    }
+  }, [location])
 
   return (
     <React.Fragment>
-      <ConfigProvider
-        theme={{
-          // algorithm: theme.darkAlgorithm,
-          // algorithm: theme.compactAlgorithm,
-          token: {
-            colorBgContainer: "#00b96b",
-          },
-          components: {
-            Radio: {
-              colorPrimary: "#00b96b",
-            },
-            Checkbox: {
-              colorPrimary: "#9E339F",
-            },
-            Button: {
-              colorPrimary: "#00d1b2 ",
-              // "linear-gradient(141deg,#009e6c 0,#00d1b2 71%,#00e7eb 100%)",
-              borderRadius: 20,
-            },
-          },
-        }}
-      >
-        <FloatButton.Group
-          icon={<CustomerServiceOutlined />}
-          type="primary"
-          trigger="hover"
-          tooltip={
-            <>
-              <Button>shape</Button>
-            </>
-          }
-        >
-          <FloatButton
-            icon={<CommentOutlined />}
-            onClick={() => {
-              alert("别反馈，没人管");
-            }}
-          />
-          <FloatButton
-            onClick={() => {
-              alert("这个也一样，没人管");
-            }}
-          />
-        </FloatButton.Group>
-      </ConfigProvider>
+
       {/* {router} */}
-      <RouterProvider
-        router={router}
-        fallbackElement={<h1>error</h1>}
-      ></RouterProvider>
+
     </React.Fragment>
   );
 };
 export default App;
+
+
+

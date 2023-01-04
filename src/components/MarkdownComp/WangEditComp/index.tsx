@@ -92,7 +92,13 @@ function WangEditorComp() {
                   onPressEnter={() => {
                     console.log("PressEnter");
                   }}
-                  style={{ borderStyle: "none none solid", borderRadius: "20px" }}
+                  style={{ borderStyle: "none none solid", borderRadius: "0", outline: "none" }}
+                  onFocus={() => {
+                    var v = document.getElementsByTagName('input')
+                    var style = v[0].style
+                    //TODO: 优化input
+                    //FIXME:待修复。
+                  }}
                 />
               </Col>
               <Col span={2}>
@@ -107,28 +113,25 @@ function WangEditorComp() {
             style={{ borderBottom: "1px solid #ccc", borderTop: "1px solid #ccc" }}
           />
         </Header>
-        <Row>
-          <Content style={{ padding: '0 50px' }}>
-            <div className="site-layout-content" style={{ background: colorBgContainer }}>
-              <Row gutter={100} style={{ marginTop: '50px' }}>
-                <Col span={12}>
-                  <Editor
-                    defaultConfig={editorConfig}
-                    value={html}
-                    onCreated={setEditor}
-                    onChange={(editor) => setHtml(editor.getHtml())}
-                    mode="default"
-                    style={{ height: "100%", overflowY: "hidden" }}
-                  />
-                </Col>
-                <Col id="editor-show" span={12} className={style.editorShow}>
+        <Content >
+          <div className="site-layout-content" style={{ background: colorBgContainer }}>
+            <Row gutter={100} style={{ marginTop: '50px' }}>
+              <Col span={12}>
+                <Editor
+                  defaultConfig={editorConfig}
+                  value={html}
+                  onCreated={setEditor}
+                  onChange={(editor) => setHtml(editor.getHtml())}
+                  mode="default"
+                  style={{ overflowY: "hidden", minHeight: "90vh" }}
+                />
+              </Col>
+              <Col id="editor-show" span={12} className={style.editorShow}>
 
-                </Col>
-              </Row>
-            </div>
-
-          </Content>
-        </Row>
+              </Col>
+            </Row>
+          </div>
+        </Content>
       </Layout>
     </React.Fragment >
   );

@@ -1,34 +1,34 @@
-import Home from "@/pages/Home";
-import { Navigate, RouteObject } from "react-router-dom";
-import Article from "@/pages/Home/Article";
-import Details from "@/pages/Home/Article/Details";
-import React, { lazy } from "react";
-import Login from "@/pages/Login";
-import Profile from "@/pages/Home/User/Profile/index";
-import AccountSetting from "@/pages/Home/User/AccountSetting";
-import { NotFount } from "@/pages/Error/404";
-import ModifyPhone from "@/pages/Home/User/AccountSetting/ModifPhone";
-import ModifyEmail from "@/pages/Home/User/AccountSetting/ModifyEmail";
-import ModifyPwd from "@/pages/Home/User/AccountSetting/ModifyPwd";
-import AccountWriteOff from "@/pages/Home/User/AccountSetting/AccountWriteOff";
-import MyArticleList from "@/pages/Home/User/MyArticleList";
-import ShowLoginHistory from "@/pages/Home/User/AccountSetting/ShowLoginHistory";
-import { createBrowserRouter, createHashRouter } from "react-router-dom";
-import User from "@/pages/Home/User";
-import Call from "@/pages/Test/Call";
-import FuncComponent from "@/pages/Test/FuncComponent";
-import ClassComponent from "@/pages/Test/ClassComponent";
-import ReduxTest from "@/pages/Test/ReduxTest/ReduxTest";
-import Error from "@/pages/Error/4xx";
-import Editor from "@/pages/Home/Editor";
+import { NotFount } from '@/pages/Error/404';
+import Error from '@/pages/Error/4xx';
+import Home from '@/pages/Home';
+import Article from '@/pages/Home/Article';
+import Details from '@/pages/Home/Article/Details';
+import Editor from '@/pages/Home/Editor';
+import User from '@/pages/Home/User';
+import AccountSetting from '@/pages/Home/User/AccountSetting';
+import AccountWriteOff from '@/pages/Home/User/AccountSetting/AccountWriteOff';
+import ModifyPhone from '@/pages/Home/User/AccountSetting/ModifPhone';
+import ModifyEmail from '@/pages/Home/User/AccountSetting/ModifyEmail';
+import ModifyPwd from '@/pages/Home/User/AccountSetting/ModifyPwd';
+import ShowLoginHistory from '@/pages/Home/User/AccountSetting/ShowLoginHistory';
+import MyArticleList from '@/pages/Home/User/MyArticleList';
+import Profile from '@/pages/Home/User/Profile';
+import Login from '@/pages/Login';
+import Call from '@/pages/Test/Call';
+import ClassComponent from '@/pages/Test/ClassComponent';
+import FuncComponent from '@/pages/Test/FuncComponent';
+import ReduxTest from '@/pages/Test/ReduxTest/ReduxTest';
+import React, { lazy, ReactNode, Suspense } from 'react';
+import { createBrowserRouter, Navigate, RouteObject } from 'react-router-dom';
+
 const lazyRouter = (
   jsxCom: JSX.Element // 路由懒加载
-) => <React.Suspense fallback={<h1>加载中</h1>}>{jsxCom}</React.Suspense>;
+) => <React.Suspense fallback={<h1>加载中...</h1>}>{jsxCom}</React.Suspense>;
 const routes: RouteObject[] = [
   // test start
   {
     path: "/cAll",
-    element: <Call />,
+    element: lazyRouter(<Call />),
   },
   {
     path: "/func",
@@ -138,6 +138,11 @@ const routes: RouteObject[] = [
   },
 ];
 
-const router = createBrowserRouter(routes);
-//router放到App.tsx,routers是作为createBrowserRouter的参数
-export { router, routes };
+/**
+ * browserRouter 供RouterProvider使用
+ */
+const browserRouter = createBrowserRouter(routes);
+
+
+//browserRouter放到App.tsx,routers是作为createBrowserRouter的参数
+export { browserRouter, routes };

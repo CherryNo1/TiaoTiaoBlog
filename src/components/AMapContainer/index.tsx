@@ -44,37 +44,36 @@ import {
 function Demo() {
     return (
         <div style={{ width: "100%", height: "300px" }}>
-            <Map zoom={4}>
-                <ScaleControl offset={[16, 30]} position="LB" />
-                <ToolBarControl offset={[16, 10]} position="RB" />
-                <ControlBarControl offset={[16, 180]} position="RB" />
-                <Geolocation
-                    maximumAge={100000}
-                    borderRadius="5px"
-                    position="RB"
-                    offset={[16, 80]}
-                    zoomToAccuracy={true}
-                    showCircle={true}
-                />
-                <Marker
-                    title="北京市"
-                    // offset={new AMap.Pixel(-13, -30)}
-                    label={{
-                        // 设置文本标注偏移量
-                        offset: new AMap.Pixel(20, 20),
-                        // 设置文本标注内容
-                        content: 'sss',
-                        // 设置文本标注方位
-                        direction: "right"
-                    }}
-                    position={[117.283042, 31.86119]}
-                >
-                    <div style={{ backgroundColor: "#333", width: 200, color: "white" }}>
-                        我是 marker 的 label 标签
-                    </div>
-                </Marker>
-            </Map>
-        </div>
+            <Map zoom={4}></Map>
+            <ScaleControl offset={[16, 30]} position="LB" />
+            <ToolBarControl offset={[16, 10]} position="RB" />
+            <ControlBarControl offset={[16, 180]} position="RB" />
+            <Geolocation
+                maximumAge={100000}
+                borderRadius="5px"
+                position="RB"
+                offset={[16, 80]}
+                zoomToAccuracy={true}
+                showCircle={true}
+            />
+            <Marker
+                title="北京市"
+                // offset={new AMap.Pixel(-13, -30)}
+                label={{
+                    // 设置文本标注偏移量
+                    offset: new AMap.Pixel(20, 20),
+                    // 设置文本标注内容
+                    content: 'sss',
+                    // 设置文本标注方位
+                    direction: "right"
+                }}
+                position={[117.283042, 31.86119]}
+            >
+                <div style={{ backgroundColor: "#333", width: 200, color: "white" }}>
+                    我是 marker 的 label 标签
+                </div>
+            </Marker>
+        </div >
     );
 }
 
