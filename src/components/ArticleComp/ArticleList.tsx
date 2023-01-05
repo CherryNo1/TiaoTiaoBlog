@@ -1,132 +1,85 @@
-import { LikeOutlined, MessageOutlined, StarOutlined } from "@ant-design/icons";
-import { ProList } from "@ant-design/pro-components";
-import { Button, Tag } from "antd";
-import axios from "axios";
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { useToken } from "@ant-design/pro-components";
+import { ArticleApi } from '@/api';
+import { LikeOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons';
+import { Avatar, List } from 'antd';
+import React, { useEffect } from 'react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 const IconText = ({ icon, text }: { icon: any; text: string }) => (
   <span>
     {React.createElement(icon, { style: { marginInlineEnd: 8 } })}
     {text}
   </span>
 );
-
-const dataSource = [
-  {
-    title: "语雀的天空",
-  },
-  {
-    title: "Ant Design",
-  },
-  {
-    title: "蚂蚁金服体验科技",
-  },
-  {
-    title: "TechUI",
-  },
-  {
-    title: "Ant Design",
-  },
-  {
-    title: "蚂蚁金服体验科技",
-  },
-  {
-    title: "TechUI",
-  },
-  {
-    title: "Ant Design",
-  },
-  {
-    title: "蚂蚁金服体验科技",
-  },
-  {
-    title: "TechUI",
-  },
-  {
-    title: "Ant Design",
-  },
-  {
-    title: "蚂蚁金服体验科技",
-  },
-  {
-    title: "TechUI",
-  },
-];
-
+type ArticleType = {
+  articleId: number;
+  articleTag: string;
+  collectionCount: number;
+  commentCount: number;
+  likeCount: number;
+  readCount: number;
+  status: string;
+  context: string;
+  coverUrl: string;
+  createTime: Date;
+  title: string;
+  userInfoId: number;
+}
 export default () => {
   const navigate = useNavigate();
+
+  const [articleList, setArticleList] = useState<ArticleType[]>()
+  useEffect(() => {
+    ArticleApi.getArticleList(1, 10).then(res => {
+      console.log(res.data.records);
+      setArticleList(res.data.records)
+    })
+  }
+  )
+
   return (
-    <ProList<{ title: string }>
-      cardProps={{
-        //当点击卡片时触发
-        onClick: (data) => {
-          navigate("/home/article/details/2");
-        },
-      }}
-      toolBarRender={() => {
-        return [
-          <Button key="3" type="primary" style={{ "backgroundColor": " linear-gradient(141deg,#009e6c 0,#00d1b2 71%,#00e7eb 100%) !import" }}>
-            我要发布
-          </Button>,
-        ];
-      }}
+
+    <List<ArticleType>
       itemLayout="vertical"
-      rowKey="id"
-      headerTitle={<h1>竖排样式</h1>}
-      dataSource={dataSource}
-      tooltip={"ssssssssssss"}
-      metas={{
-        title: {},
-        description: {
-          render: () => (
-            <>
-              <Tag>语雀专栏</Tag>
-              <Tag>设计语言</Tag>
-              <Tag>蚂蚁金服</Tag>
-            </>
-          ),
+      size="large"
+      pagination={{
+        onChange: (page) => {
+          console.log(page);
         },
-        actions: {
-          render: () => [
-            <IconText
-              icon={StarOutlined}
-              text="156"
-              key="list-vertical-star-o"
-            />,
-            <IconText
-              icon={LikeOutlined}
-              text="156"
-              key="list-vertical-like-o"
-            />,
-            <IconText
-              icon={MessageOutlined}
-              text="2"
-              key="list-vertical-message"
-            />,
-          ],
-        },
-        extra: {
-          render: () => (
+        pageSize: 3,
+      }}
+      dataSource={articleList}
+      footer={
+        <div>
+          <b>ant design</b> footer part
+        </div>
+      }
+      renderItem={(item) => (
+        <List.Item
+          key={item.title}
+          actions={[
+            <IconText icon={StarOutlined} text="156" key="list-vertical-star-o" />,
+            <IconText icon={LikeOutlined} text="156" key="list-vertical-like-o" />,
+            <IconText icon={MessageOutlined} text="2" key="list-vertical-message" />,
+          ]}
+          extra={
             <img
               width={272}
               alt="logo"
               src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
             />
-          ),
-        },
-        content: {
-          render: () => {
-            return (
-              <div>
-                段落示意：蚂蚁金服设计平台
-                design.alipay.com，用最小的工作量，无缝接入蚂蚁金服生态，提供跨越设计与开发的体验解决方案。蚂蚁金服设计平台
-                design.alipay.com，用最小的工作量，无缝接入蚂蚁金服生态提供跨越设计与开发的体验解决方案。
-              </div>
-            );
-          },
-        },
-      }}
+          }
+        >
+          <List.Item.Meta
+            avatar={<Avatar src={''} />}
+            title={<a href={item.title}>{item.title}</a>}
+            description={item.articleTag}
+          />
+          {item.context}
+        </List.Item>
+      )}
     />
   );
 };
+
+

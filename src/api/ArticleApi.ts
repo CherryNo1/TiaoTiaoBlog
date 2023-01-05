@@ -1,8 +1,11 @@
 import { service } from '@/utils/request';
-const PREFIX = "/api/mocks"
+const PREFIX = "/api"
 class ArticleApi {
-    public static getArticle(data?: any) {
-        return service.get(`${PREFIX}/article.json`, data)
+    public static getArticle(articleId: number) {
+        return service.get(`${PREFIX}/tiaotiao/article/${articleId}`)
+    }
+    public static getArticleList(current: number, size: number) {
+        return service.get(`${PREFIX}/tiaotiao/article/all/${current}/${size}`)
     }
 }
 
