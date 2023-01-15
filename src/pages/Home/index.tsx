@@ -39,6 +39,8 @@ import Details from "./Article/Details";
 import { ArticleApi } from "@/api";
 import Editorer from "./Editor";
 import AMapContainer from "@/components/AMapContainer";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux/es/exports";
 const phone = decode("7784854978686949778481517810610361");
 //原生js加密
 window.btoa(unescape(encodeURIComponent("我是一段需要处理的字符")));
@@ -48,6 +50,10 @@ decodeURIComponent(
 );
 
 const Home: React.FC = (props) => {
+  const select = useSelector(store => {
+
+  })
+  const dispathch = useDispatch()
 
   const { token } = useToken()
   const location = useLocation()

@@ -7,7 +7,8 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import { BrowserRouter, Router, RouterProvider } from 'react-router-dom';
 import { browserRouter } from './router';
-
+import { Provider } from 'react-redux';
+import { store } from '@/redux'
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
 
@@ -19,18 +20,21 @@ root.render(
    * 用下面的这个路由方式的话，就不能在App中使用hooks
    * 如果想用这个，将下面的放在App组件。并且 main.js中删去<BrowserRouter>，只留一个<App>标签
    */
-  <RouterProvider
-    router={browserRouter}
-    fallbackElement={<h1>error</h1>}
-  ></RouterProvider>
+
+  // <RouterProvider
+  //   router={browserRouter}
+  //   fallbackElement={<h1>error</h1>}
+  // />
 
 
   /**
    * 第二种方式，常用，比第一种容易理解
    */
-  // <BrowserRouter>
-  //   <App />
-  // </BrowserRouter>
+  <BrowserRouter>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </BrowserRouter>
 
   // <React.StrictMode>
   //   {/*组件形式 路由使用下面的*/}

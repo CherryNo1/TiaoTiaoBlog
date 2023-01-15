@@ -5,7 +5,12 @@
  * 2、reducer函数的两个参数 之前的状态(preState) ,动作对象(action)
  * action的数据结构：{type:string,data :any}
  */
-function countReducer(preState: any, action: { type: string, data: any }) {
+// 1. 定义初始化值
+export type ActionType = {
+    type: string,
+    data: number
+}
+function countReducer(preState: number = 0, action: ActionType) {
     console.log(preState, action);
 
     //从action对象获取type、data

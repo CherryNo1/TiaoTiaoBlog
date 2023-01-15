@@ -51,7 +51,7 @@ export default () => {
       dataSource={articleList}
       footer={
         <div>
-          <b>ant design</b> footer part
+          ant design footer part
         </div>
       }
       renderItem={(item) => (
